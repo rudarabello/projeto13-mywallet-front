@@ -33,7 +33,7 @@ const BackArrow = styled.div`
     left: 38px;
     `;
 const Container = styled.div`
-background: black;
+background: #8C11BE;
 width: 100%;
 display: flex;
 align-items: center;
@@ -64,24 +64,25 @@ input {
     margin-bottom: 10px;
 }
 
-button{
-    width: 100%;
-    height: 45px;
-    margin-top: 10px;
+button {
+    width: 155px;
+    height: 114px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: #ff4791;
-    border: thin solid #ff4791;
+    background-color: #A328D6;
+    border: thin solid #A328D6;
     color: #ffffff;
-    font-family: "Roboto";
-    font-size: 18px;
-    font-weight: 300;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
     :hover {
     cursor: pointer;
     box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
     }
-}
-`;
+};`
+
 
 
 

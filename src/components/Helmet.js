@@ -5,7 +5,7 @@ export default function Hel() {
     return (
         <div>
             <Helmet>
-                <title>Driven Plus</title>
+                <title>My Wallet</title>
             </Helmet>
         </div>
     );

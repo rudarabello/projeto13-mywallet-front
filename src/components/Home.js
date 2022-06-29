@@ -45,134 +45,98 @@ export default function Home() {
   return (
     <ContainerHome>
       {loading === true ?
-      <Container>
-      <Header>
-        <img src={infoPlan.image} alt="Imagem do Plano" />
-        <img
-          onClick={() => navigate(`/user/${infoPlan.id}`)}
-          src={Profile}
-          alt="Imagem do Perfil"
-          width="20px"
-          height="20px"
-        />
-      </Header>
-      <h1>Olá, {account.name}</h1>
-      <ButtonsFromApi>
-        {infoPlan.perks === undefined
-          ? "": infoPlan.perks.map((perks, index) => (
-            <a key={index} href={perks.link} target="_blank" rel="noreferrer">
-              <button key={index}>{perks.title}</button>
-            </a>
-          ))}
-      </ButtonsFromApi>
-      <ButtonsHomeContainer>
-        <button onClick={() => navigate("/subscriptions")}>Mudar Plano</button>
-        <button onClick={() => deletePlanDataFromApi()}>Cancelar Plano</button>
-      </ButtonsHomeContainer>
-      </Container>
-      :<Loading/>}
+        <Container>
+          <Header>
+
+            <h1>Olá, {account.name}</h1>
+            <img
+              onClick={() => navigate(`/user/${infoPlan.id}`)}
+              src={Profile}
+              alt="Botão sair"
+              width="10px"
+              height="10px"
+            />
+          </Header>
+          <TransationArea>
+          </TransationArea>
+          <Buttons>
+            <button onClick={() => navigate("/Sum")}>Nova Entrada</button>
+            <button onClick={() => navigate("/Deduct")}>Nova Saída</button>
+          </Buttons>
+        </Container>
+        : <Loading />}
     </ContainerHome>
   );
 }
 
 const Container = styled.div`
-  max-width: 450px;  
-  height: 100vh;
+  padding-top: 50px;
+  max-width: 450px;
+  min-width: 330px ;
+  background: #8C11BE;
+`;
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  h1{
+    text-align: start;
+    margin-left: 0 ;
+    color: white;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 31px;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const ContainerHome = styled.div`
   display: flex;
-  background: black;
+  background: #8C11BE;
   align-items: center;
   align-content: center;
-  height: 100%;  
+  height: 100vh;  
   flex-direction: column;
-  padding: 2.8rem;
-  h1 {
-    margin-top: 30px;
-    margin-left: 20%;
-    color: white;
-    font-family: "Roboto";
-    font-size: 28px;
-  }
-  @media(max-width: 450px) {
-    height: 100vh;
-  }
-
 `;
-const ButtonsFromApi = styled.div`
+const TransationArea = styled.div`
+  background-color: #FFFFFF;
   width: 100%;
   min-width: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 5%;
-  margin-bottom: 40%;
-  button, a {
-    width: 100%;
-    height: 50px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #ff4791;
-    border: thin solid #ff4791;
-    color: #ffffff;
-    font-family: "Roboto";
-    font-size: 18px;
-    font-weight: 300;
-    :hover {
-      cursor: pointer;
-      box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
-    }
-  }
+  margin-bottom: 10%;
+  min-height: 446px;
 `;
-const ButtonsHomeContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  align-content: center;
-  position: relative;
-    button {
-    width: 100%;
-    height: 50px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #ff4791;
-    border: thin solid #ff4791;
-    color: #ffffff;
-    font-family: "Roboto";
-    font-size: 18px;
-    font-weight: 300;
-    :hover {
-      cursor: pointer;
-      box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
-    }
-    &:last-child {
-      background-color: #ff4747;
-      border: thin solid #ff4747;
-      color: #ffffff;
-      font-family: "Roboto";
-      font-size: 18px;
-      font-weight: 700;
-    }
-  }
-`;
-
-const Header = styled.div`
+const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  img {
-    width: 100px;
-    height: 100px;
-    :last-child {
-      width: 50px;
-      height: 50px;
-      :hover {
-        cursor: pointer;
-      }
+  margin-top: 50px;
+  width: 100%;
+  flex-direction: row;
+  position: relative;
+    button {
+    width: 155px;
+    height: 114px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #A328D6;
+    border: thin solid #A328D6;
+    color: #ffffff;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    :hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
     }
   }
 `;

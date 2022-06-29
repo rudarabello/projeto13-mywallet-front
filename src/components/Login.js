@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Context from "../contexts/Context";
 import ContextPlan from "../contexts/ContextPlan";
-import logo from "../assets/Driven_white 1.png";
+import logo from "../assets/Studio_Project.png";
 import Loading from "../components/Loading";
 
 
@@ -59,7 +59,7 @@ export default function Login() {
         <StyledLogin>
             {loading === true ?
             <Page>
-                <img src={logo} alt="Logo Driven+" />
+                <img  src={logo} alt="Logo My Wallet" />
                 <Form onSubmit={handleLogin}>
                     <Input
                         onChange={(e) => {
@@ -94,7 +94,7 @@ export default function Login() {
 const StyledLogin = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: black;
+    background-color: #8C11BE;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,6 +108,8 @@ const StyledLogin = styled.div`
         font-family: "Roboto";
     }
     img{
+        width: 100%;
+        height: 100%;
         margin-bottom: 20px;
     }
 `
@@ -149,7 +151,7 @@ const FormButton = styled.button`
 width: 100%;
 height: 45px;
 border: none;
-background: #FF4791;
+background: #A328D6;
 border-radius: 8px;
 font-family: 'Roboto';
 font-style: normal;

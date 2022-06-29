@@ -5,7 +5,7 @@ import Favicon from 'react-favicon'
 export default function Fav() {
     return (
         <>
-            <Favicon url='https://svgshare.com/i/dSP.svg' />
+            <Favicon url='https://www.svgrepo.com/show/99360/wallet.svg' />
         </>
     );
 };

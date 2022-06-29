@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import { css } from "@emotion/react";
-import PulseLoader from "react-spinners/PulseLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const override = css`
-margin: 0 auto;
-color: #FF4791;
+margin: 0 auto ;
 `;
 export default function Loading() {
     return (
         <StyledLoading>
-            <PulseLoader loading color="#FF4791" css={override} size={50} />
+            <FadeLoader loading color="#ffffff" css={override}  height={25} width={8} radius={50} margin={25} />
         </StyledLoading>
     );
 };
 
 const StyledLoading = styled.div`
     width: 100%;
-    height: 100vh;
-    background-color: black;
+    height: 100%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
