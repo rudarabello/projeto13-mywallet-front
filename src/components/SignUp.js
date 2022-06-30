@@ -38,9 +38,9 @@ export default function SignUp() {
         <StyledCadastro>
             <form onSubmit={handleSubmit}>
                 <input type="name" placeholder="Nome " onChange={(e) => setName(e.target.value)} />
-                <input type="CPF" placeholder="CPF" onChange={(e) => setCpf(e.target.value)} />
                 <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" placeholder="Confirme a senha" onChange={(e) => setCpf(e.target.value)} />
                 <button type="submit">ENTRAR</button>
                 <Link to="/">Já tem uma conta? Faça login!</Link>
             </form>
@@ -51,7 +51,7 @@ export default function SignUp() {
 const StyledCadastro = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: black;
+    background-color: #8C11BE;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,7 +81,7 @@ const StyledCadastro = styled.div`
         width: 100%;
         border: none;
         border-radius: 8px;
-        background-color: #FF4791;
+        background-color: #A328D6;
         font-size: 14px;
         font-weight: 700;
         color: #FFFFFF;

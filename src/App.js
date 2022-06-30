@@ -3,11 +3,9 @@ import Context from "./contexts/Context";
 import ContextPlan from "./contexts/ContextPlan";
 import Login from "./components/Login"
 import SignUp from "./components/SignUp";
-import Subscriptions from "./components/Subscriptions";
-import Plan from "./components/Plan";
 import Home from "./components/Home";
-import UserPage from "./components/UserPage";
-import UserUpdate from "./components/UserUpdate";
+import Input from "./components/Input";
+import Output from "./components/Output";
 import { useState } from "react";
 import Fav from "./components/Favicon";
 import Hel from "./components/Helmet";
@@ -20,17 +18,15 @@ export default function App() {
     return (
         <Context.Provider value={{ account, setAccount }}>
             <ContextPlan.Provider value={{ infoPlan, setInfoPlan }}>
-                <Fav/>
-                <Hel/>
+                <Fav />
+                <Hel />
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />
-                        <Route path="/subscriptions" element={<Subscriptions />} />
-                        <Route path="/plan/:idPlan" element={<Plan />} />
                         <Route path="/home" element={<Home />} />
-                        <Route path="/user/:idUser" element={<UserPage />} />
-                        <Route path="/user/:idUser/update" element={<UserUpdate />} />
+                        <Route path="/input" element={<Input/>} />
+                        <Route path="/output" element={<Output />} />
                     </Routes>
                 </BrowserRouter>
             </ContextPlan.Provider>

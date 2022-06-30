@@ -60,8 +60,8 @@ export default function Home() {
           <TransationArea>
           </TransationArea>
           <Buttons>
-            <button onClick={() => navigate("/Sum")}>Nova Entrada</button>
-            <button onClick={() => navigate("/Deduct")}>Nova Saída</button>
+            <button onClick={() => navigate("/input")}>Nova Entrada</button>
+            <button onClick={() => navigate("/output")}>Nova Saída</button>
           </Buttons>
         </Container>
         : <Loading />}
