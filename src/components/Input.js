@@ -7,7 +7,7 @@ import Context from "../contexts/Context";
 
 export default function UsersPage() {
     const navigate = useNavigate();
-    const { account } = useContext(Context);
+    const { data } = useContext(Context);
     return (
         <ContainerUsers>
             <ButtonsFromApi>

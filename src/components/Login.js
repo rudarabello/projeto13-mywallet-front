@@ -3,22 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Context from "../contexts/Context";
-import ContextPlan from "../contexts/ContextPlan";
 import logo from "../assets/Studio_Project.png";
 import Loading from "../components/Loading";
 
 
 
 export default function Login() {
-    
+
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const localUser = localStorage.getItem("user");
     const navigate = useNavigate()
-    const { setAccount } = useContext(Context);
-    const { setInfoPlan } = useContext(ContextPlan);
-    const URL = "https://mock-api.driven.com.br/api/v4/driven-plus/auth/login";
+    const { setData } = useContext(Context);
+    const URL = "https://back-project-mywallet-ruda.herokuapp.com/";
     const tempAxiosFunction = useRef();
     const axiosFunction = () => {
         if (localUser !== null) {
@@ -42,50 +40,45 @@ export default function Login() {
         promise.catch(error => alert(error.response.data.message));
     }
     function GoTo(data) {
-        setAccount(data);
-        setInfoPlan(data.membership);
+        setData(data);
         const user = { email, password };
-        localStorage.removeItem("user");        
+        localStorage.removeItem("user");
         const userStrigify = JSON.stringify(user);
         localStorage.setItem("user", userStrigify);
-        if (data.membership === null) {
-            navigate('/subscriptions')
-        } else {
-            navigate('/home')
-        }
+        navigate('/wallet');
     };
-    setTimeout(()=> setLoading (true),3000);
+    setTimeout(() => setLoading(true), 1000);
     return (
         <StyledLogin>
             {loading === true ?
-            <Page>
-                <img  src={logo} alt="Logo My Wallet" />
-                <Form onSubmit={handleLogin}>
-                    <Input
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                        value={email}
-                        placeholder="E-mail"
-                        type="email"
-                        required
-                        autoComplete="email"
-                    />
-                    <Input
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        value={password}
-                        placeholder="Senha"
-                        type="password"
-                        required
-                        autoComplete="password"
-                    />
-                    <FormButton type="submit">ENTRAR</FormButton>
-                </Form>
-                <Link to="/SignUp">Não tem uma conta? Cadastre-se!</Link>
-            </Page>:
-            <Loading />}            
+                <Page>
+                    <img src={logo} alt="Logo My Wallet" />
+                    <Form onSubmit={handleLogin}>
+                        <Input
+                            onChange={(e) => {
+                                setEmail(e.target.value);
+                            }}
+                            value={email}
+                            placeholder="E-mail"
+                            type="email"
+                            required
+                            autoComplete="email"
+                        />
+                        <Input
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                            }}
+                            value={password}
+                            placeholder="Senha"
+                            type="password"
+                            required
+                            autoComplete="password"
+                        />
+                        <FormButton type="submit">ENTRAR</FormButton>
+                    </Form>
+                    <Link to="/sign-up">Não tem uma conta? Cadastre-se!</Link>
+                </Page> :
+                <Loading />}
         </StyledLogin>
     )
 }

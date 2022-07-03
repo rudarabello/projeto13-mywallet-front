@@ -4,43 +4,36 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function SignUp() {
-
     const navigate = useNavigate();
-    const API = "https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up";
+    const API = "https://back-project-mywallet-ruda.herokuapp.com/sign-up";
     const [name, setName] = useState("");
-    const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-
+    const [Cpassword, setCPassword] = useState("");
     function handleSubmit(e) {
         e.preventDefault();
         const register = {
             email,
             name,
-            cpf,
-            password
+            password,
+            Cpassword
         };
-
         const promise = axios.post(API, register);
         promise.then(() => {
             alert("Usuário cadastrado com sucesso!");
             navigate("/");
         });
-
         promise.catch((err) => {
-            alert(err.response.data.message);
+            alert(err);
         });
-
     }
-
     return (
         <StyledCadastro>
             <form onSubmit={handleSubmit}>
                 <input type="name" placeholder="Nome " onChange={(e) => setName(e.target.value)} />
                 <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
-                <input type="password" placeholder="Confirme a senha" onChange={(e) => setCpf(e.target.value)} />
+                <input type="password" placeholder="Confirme a senha" onChange={(e) => setCPassword(e.target.value)} />
                 <button type="submit">ENTRAR</button>
                 <Link to="/">Já tem uma conta? Faça login!</Link>
             </form>

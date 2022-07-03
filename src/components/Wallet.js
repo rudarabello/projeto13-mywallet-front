@@ -1,46 +1,32 @@
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
-import Context from "../contexts/Context";
-import ContextPlan from "../contexts/ContextPlan";
-import Profile from "../assets/Profile.png";
-import Loading from "../components/Loading";
+import Context from "../contexts/Context"
+import Profile from "../assets/Vector.png";
+import Loading from "./Loading";
 
-export default function Home() {
+
+export default function Wallet() {
+  const { data } = useContext(Context);
   const [loading, setLoading] = useState(false);
+  const [operations, setOperations] = useState();
   const navigate = useNavigate();
-  const { account } = useContext(Context);
-  const { infoPlan } = useContext(ContextPlan);
-  function deletePlanDataFromApi() {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${account.token}`,
-      },
-    };
-    const decision = window.confirm(
-      "Tem certeza que deseja cancelar o seu Plano ?"
-    );
-    if (decision) {
-      const promise = axios.delete(
-        "https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions",
-        config
-      );
-      promise.then(() => {
-        alert(
-          "Seu plano foi cancelado com sucesso, contrate outro agora mesmo!"
-        );
-        navigate("/subscriptions");
-      });
-      promise.catch((error) => {
-        alert(
-          "Tive um problema tecnico ao cancelar o seu Plano, por favor tente mais tarde ",
-          error
-        );
-      });
-    }
+  const tempAxiosFunction = useRef();
+  const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
+  const axiosFunction = () => {
+    const config = { headers: { Authorization: `Bearer ${data.token}`}};
+    const promise = axios.get(ApiGet, config);
+    promise.then(response => setOperations(response.data));
+    promise.catch(error => console.log(error));
   }
+  tempAxiosFunction.current = axiosFunction;
+
+  useEffect(() => {
+    tempAxiosFunction.current();
+  }, []);
+
   setTimeout(() => setLoading(true), 2000);
   return (
     <ContainerHome>
@@ -48,9 +34,9 @@ export default function Home() {
         <Container>
           <Header>
 
-            <h1>Olá, {account.name}</h1>
+            <h1>Olá, {data.name}</h1>
             <img
-              onClick={() => navigate(`/user/${infoPlan.id}`)}
+              onClick={() => navigate(`/`)}
               src={Profile}
               alt="Botão sair"
               width="10px"
@@ -58,6 +44,17 @@ export default function Home() {
             />
           </Header>
           <TransationArea>
+            <Description>
+              {operations === []
+                ? operations.map(
+                  (data, index) => (
+                    <span key={index}>{index + 1} {data.date}{""}{data.description}{data.value} </span>
+                  ))
+                : <Message>Não há registros de entrada ou saída</Message>}
+            </Description>
+            <Balance>
+              <h2>{operations !== []? '': 'SALDO'}</h2>
+            </Balance>
           </TransationArea>
           <Buttons>
             <button onClick={() => navigate("/input")}>Nova Entrada</button>
@@ -68,6 +65,37 @@ export default function Home() {
     </ContainerHome>
   );
 }
+
+const TransationArea = styled.div`
+  background-color: #FFFFFF;
+  width: 100%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  min-height: 446px;
+`;
+const Description = styled.div`
+  background: #FFFFFF;
+`;
+const Message = styled.div`
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  width: 180px;
+  color: #868686;
+`;
+
+const Balance = styled.div`
+  background: #FFFFFF;
+  margin-bottom: 0;
+  flex-direction: column-reverse;
+`;
 
 const Container = styled.div`
   padding-top: 50px;
@@ -103,17 +131,7 @@ const ContainerHome = styled.div`
   height: 100vh;  
   flex-direction: column;
 `;
-const TransationArea = styled.div`
-  background-color: #FFFFFF;
-  width: 100%;
-  min-width: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 5%;
-  margin-bottom: 10%;
-  min-height: 446px;
-`;
+
 const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
