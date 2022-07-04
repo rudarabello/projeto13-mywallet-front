@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import Context from "../contexts/Context";
-import logo from "../assets/Studio_Project.png";
+import logo from "../assets/MyWallet.png";
 import Loading from "../components/Loading";
 
 
@@ -76,12 +76,35 @@ export default function Login() {
                         />
                         <FormButton type="submit">ENTRAR</FormButton>
                     </Form>
-                    <Link to="/sign-up">Não tem uma conta? Cadastre-se!</Link>
+                    <Linkto>
+                        <Link to="/sign-up">
+                            <a>
+                                Primeira vez? Cadastre-se!
+                            </a>
+                        </Link>
+                    </Linkto>
                 </Page> :
                 <Loading />}
         </StyledLogin>
     )
+};
+
+
+const Linkto = styled.div`
+text-decoration: none !important;
+a{
+    font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+text-decoration: none !important;
 }
+:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
+    }
+`;
 
 
 const StyledLogin = styled.div`
@@ -110,6 +133,7 @@ const Page = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+max-width: 240px;
 `;
 
 

@@ -7,6 +7,7 @@ import Context from "../contexts/Context"
 import Profile from "../assets/Vector.png";
 import Loading from "./Loading";
 import TransactionItem from "../components/TransactionItem";
+import LogoutButton from "../components/LogOut";
 
 export default function Wallet() {
   const { data } = useContext(Context);
@@ -47,7 +48,7 @@ export default function Wallet() {
           <Header>
             <h1>Olá, {data.name}</h1>
             <img
-              onClick={() => navigate(`/`)}
+              onClick={() => LogoutButton()}
               src={Profile}
               alt="Botão sair"
               width="10px"
@@ -66,7 +67,7 @@ export default function Wallet() {
             </Balance>
           </TransationArea>
           <OverBalance>
-            <h1>SALDO</h1><span>{total}</span>
+            <h1>SALDO</h1><span>R$ {total}</span>
           </OverBalance>
           <Buttons>
             <button onClick={() => navigate("/input")}>Nova Entrada</button>
