@@ -35,11 +35,34 @@ export default function SignUp() {
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
                 <input type="password" placeholder="Confirme a senha" onChange={(e) => setCPassword(e.target.value)} />
                 <button type="submit">ENTRAR</button>
-                <Link to="/">Já tem uma conta? Faça login!</Link>
+                <Linkto>
+                    <Link to="/">
+                        <a href="https://vercel.com/rudarabello/projeto13-mywallet-front/">
+                            Já tem uma conta? Faça login!
+                        </a>
+                    </Link>
+                </Linkto>
             </form>
         </StyledCadastro>
     )
+};
+
+const Linkto = styled.div`
+text-decoration: none !important;
+a{
+    font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 15px;
+line-height: 18px;
+text-decoration: none !important;
 }
+:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
+    }
+`;
+
 
 const StyledCadastro = styled.div`
     width: 100%;
@@ -50,6 +73,7 @@ const StyledCadastro = styled.div`
     justify-content: center;
     align-items: center;
     form {
+        max-width: 240px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -58,10 +82,9 @@ const StyledCadastro = styled.div`
     }
     input {
         height: 52px;
-        width: 299px;
+        width: 100%;
         border: none;
         border-radius: 8px;
-        padding-left: 14px;
     }
     input::placeholder {
         
