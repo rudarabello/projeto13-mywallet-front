@@ -6,17 +6,18 @@ import styled from "styled-components";
 import Context from "../contexts/Context"
 import Profile from "../assets/Vector.png";
 import Loading from "./Loading";
-
+import TransactionItem from "../components/TransactionItem";
 
 export default function Wallet() {
   const { data } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [operations, setOperations] = useState();
+  const [total, setTotal] = useState();
   const navigate = useNavigate();
   const tempAxiosFunction = useRef();
   const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
   const axiosFunction = () => {
-    const config = { headers: { Authorization: `Bearer ${data.token}`}};
+    const config = { headers: { Authorization: `Bearer ${data.token}` } };
     const promise = axios.get(ApiGet, config);
     promise.then(response => setOperations(response.data));
     promise.catch(error => console.log(error));
@@ -27,13 +28,23 @@ export default function Wallet() {
     tempAxiosFunction.current();
   }, []);
 
+  useEffect(() => {
+    if (operations) {
+      const values = operations.map(({ value }) => { return value });
+      let balance = 0;
+      for (let j = 0; j < values.length; j++) {
+        balance += values[j]
+      }
+      setTotal(balance);
+    }
+  });
+  
   setTimeout(() => setLoading(true), 2000);
   return (
     <ContainerHome>
       {loading === true ?
         <Container>
           <Header>
-
             <h1>Olá, {data.name}</h1>
             <img
               onClick={() => navigate(`/`)}
@@ -45,17 +56,18 @@ export default function Wallet() {
           </Header>
           <TransationArea>
             <Description>
-              {operations === []
-                ? operations.map(
-                  (data, index) => (
-                    <span key={index}>{index + 1} {data.date}{""}{data.description}{data.value} </span>
-                  ))
+              {operations !== []
+                ? operations && operations.map(({ value, date, description }, index) =>
+                  <TransactionItem index={index} value={value} date={date} description={description} />)
                 : <Message>Não há registros de entrada ou saída</Message>}
             </Description>
             <Balance>
-              <h2>{operations !== []? '': 'SALDO'}</h2>
+              <h2>{operations !== [] ? '' : ''}</h2>
             </Balance>
           </TransationArea>
+          <OverBalance>
+            <h1>SALDO</h1><span>{total}</span>
+          </OverBalance>
           <Buttons>
             <button onClick={() => navigate("/input")}>Nova Entrada</button>
             <button onClick={() => navigate("/output")}>Nova Saída</button>
@@ -64,21 +76,52 @@ export default function Wallet() {
         : <Loading />}
     </ContainerHome>
   );
-}
+};
+
+const OverBalance = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  width: 100%;
+  min-width: 260px;
+  max-width: 326px;
+
+  h1{
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    color: #000000;
+    padding-left: 3px;
+  }
+  span{
+    font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: right;
+  color: #000000;
+  padding-right: 3px;
+  }
+`;
 
 const TransationArea = styled.div`
   background-color: #FFFFFF;
   width: 100%;
   min-width: 260px;
+  max-width: 326px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   margin-top: 5%;
-  margin-bottom: 10%;
   min-height: 446px;
 `;
 const Description = styled.div`
   background: #FFFFFF;
+  width: 100%;
+  padding-top: 10px;
 `;
 const Message = styled.div`
   font-family: 'Raleway';

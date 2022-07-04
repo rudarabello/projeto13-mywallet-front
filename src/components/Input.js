@@ -2,21 +2,49 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
+import axios from "axios";
+import { useState } from "react";
 
 
 
 export default function UsersPage() {
     const navigate = useNavigate();
     const { data } = useContext(Context);
+    const [value, setValue] = useState("");
+    const [description, setDescription] = useState("");
+    const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    function handleSubmit(e) {
+        e.preventDefault();
+        const config = {
+            headers: {
+                Authorization: `Bearer ${data.token}`
+            }
+        };
+        const body = {
+            type: "input",
+            value: value*1,
+            description: description,
+        };
+        const promise = axios.post(API, body, config
+        );
+        promise.then(() => {
+            alert("Registrado com sucesso!");
+            navigate("/wallet");
+        });
+        promise.catch((err) => {
+            alert(err);
+            navigate("/");
+        });
+    }
     return (
         <ContainerUsers>
             <ButtonsFromApi>
-            <h1>Nova entrada</h1>
-                <input value="Valor" />
-                <input value="Descrição" />
-                <button onClick={() => navigate(`/home`)}>
-                    Salvar Entrada
-                </button>
+                <h1>Nova entrada</h1>
+                <form onSubmit={handleSubmit}>
+                    <input type="number" placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
+                    <input type="text" placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} />
+                    <button type="submit">Salvar Entrada</button>
+                </form>
             </ButtonsFromApi>
         </ContainerUsers>
     );
