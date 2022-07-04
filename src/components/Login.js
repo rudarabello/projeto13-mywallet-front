@@ -78,7 +78,7 @@ export default function Login() {
                     </Form>
                     <Linkto>
                         <Link to="/sign-up">
-                            <a>
+                            <a href="https://vercel.com/rudarabello/projeto13-mywallet-front/signup">
                                 Primeira vez? Cadastre-se!
                             </a>
                         </Link>

@@ -7,7 +7,6 @@ import Context from "../contexts/Context"
 import Profile from "../assets/Vector.png";
 import Loading from "./Loading";
 import TransactionItem from "../components/TransactionItem";
-import LogoutButton from "../components/LogOut";
 
 export default function Wallet() {
   const { data } = useContext(Context);
@@ -38,8 +37,20 @@ export default function Wallet() {
       }
       setTotal(balance);
     }
-  });
-  
+  },[operations]);
+  function logoutButton() {
+    const API = `https://back-project-mywallet-ruda.herokuapp.com/logout`;
+    const config = { headers: { Authorization: `Bearer ${data.token}` } };
+    const promise = axios.delete(API, config);
+    promise.then(() => {
+        alert("Logout feito com Sucesso!");
+        navigate("/");
+    }
+    ).catch(err => {
+        alert(err)
+        console.log(err);
+    })
+  }
   setTimeout(() => setLoading(true), 2000);
   return (
     <ContainerHome>
@@ -48,7 +59,7 @@ export default function Wallet() {
           <Header>
             <h1>Olá, {data.name}</h1>
             <img
-              onClick={() => LogoutButton()}
+              onClick={() => logoutButton()}
               src={Profile}
               alt="Botão sair"
               width="10px"

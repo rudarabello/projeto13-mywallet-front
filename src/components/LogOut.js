@@ -8,13 +8,15 @@ export default function LogoutButton() {
     const { data } = useContext(Context);
     const navigate = useNavigate();
     const config = { headers: { Authorization: `Bearer ${data.token}` } };
-        const promise = axios.delete(API, config);
-        promise.then(res => {
-            navigate("/");
-            alert("Logout feito com Sucesso!")
-        }).catch(err => {
-            console.log(err);
-        })
+    const promise = axios.delete(API, config);
+    promise.then(() => {
+        alert("Logout feito com Sucesso!")
+        navigate("/");
+    }
+    ).catch(err => {
+        alert(err)
+        console.log(err);
+    })
     return (
         <></>
     );
