@@ -173,7 +173,8 @@ const ContainerHome = styled.div`
   background: #8C11BE;
   align-items: center;
   align-content: center;
-  height: 100vh;  
+  height: 100vh;
+  width: 100%;
   flex-direction: column;
 `;
 const Header = styled.div`
