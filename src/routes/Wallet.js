@@ -191,6 +191,7 @@ const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
+  margin-bottom: 50px;
   width: 100%;
   flex-direction: row;
   position: relative;
