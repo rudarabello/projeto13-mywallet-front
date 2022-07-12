@@ -105,11 +105,12 @@ const Container = styled.div`
 `;
 const ContainerHome = styled.div`
   display: flex;
-  background: #7511BE;
+  background: #8C11BE;
   align-items: center;
   align-content: center;
   height: 100vh;
   width: 100%;
+  min-height: 800px;
   flex-direction: column;
 `;
 
