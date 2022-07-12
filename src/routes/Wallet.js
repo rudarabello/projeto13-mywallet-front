@@ -44,7 +44,7 @@ export default function Wallet() {
     const promise = axios.delete(API, config);
     promise.then(() => {
       alert("Logout feito com Sucesso!");
-      navigate("/home");
+      navigate("/");
     }
     ).catch(err => {
       alert(err)

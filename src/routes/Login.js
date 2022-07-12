@@ -36,8 +36,13 @@ export default function Login() {
             password
         }
         const promise = axios.post(URL, user);
-        promise.then(response => GoTo(response.data));
-        promise.catch(error => alert(error.response.data.message));
+        const wait = promise.then();
+        if (!wait) {
+            <Loading />
+        } else {
+            promise.then(response => GoTo(response.data));
+            promise.catch(error => alert(error.response.data.message));
+        }
     }
     function GoTo(data) {
         setData(data);

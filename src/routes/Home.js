@@ -24,7 +24,7 @@ const Home = () => {
                 </Link>
             </Linkto1>
             <Linkto>
-                <Link to="/">
+                <Link to="/login">
                     <a href="#">
                         Já tem uma conta? Faça login!
                     </a>

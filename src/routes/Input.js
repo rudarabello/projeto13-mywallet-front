@@ -33,7 +33,7 @@ export default function UsersPage() {
         });
         promise.catch((err) => {
             alert(err);
-            navigate("/home");
+            navigate("/");
         });
     }
     return (

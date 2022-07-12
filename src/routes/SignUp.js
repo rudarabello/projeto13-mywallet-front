@@ -22,7 +22,7 @@ export default function SignUp() {
         const promise = axios.post(API, register);
         promise.then(() => {
             alert("Usuário cadastrado com sucesso!");
-            navigate("/home");
+            navigate("/");
         });
         promise.catch((err) => {
             alert(err);
