@@ -20,7 +20,11 @@ export default function Wallet() {
     const config = { headers: { Authorization: `Bearer ${data.token}` } };
     const promise = axios.get(ApiGet, config);
     promise.then(response => setOperations(response.data));
-    promise.catch(error => console.log(error));
+    promise.catch(() => {
+      alert("Por favor faça o login!");
+      navigate("/");
+    }
+    )
   }
   tempAxiosFunction.current = axiosFunction;
 
