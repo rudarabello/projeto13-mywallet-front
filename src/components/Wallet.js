@@ -37,20 +37,20 @@ export default function Wallet() {
       }
       setTotal(balance);
     }
-  },[operations]);
+  }, [operations]);
   function logoutButton() {
     const API = `https://back-project-mywallet-ruda.herokuapp.com/logout`;
     const config = { headers: { Authorization: `Bearer ${data.token}` } };
     const promise = axios.delete(API, config);
     promise.then(() => {
-        alert("Logout feito com Sucesso!");
-        navigate("/");
+      alert("Logout feito com Sucesso!");
+      navigate("/");
     }
     ).catch(err => {
-        alert(err)
-        console.log(err);
+      alert(err)
+      console.log(err);
     })
-  }
+  };
   setTimeout(() => setLoading(true), 2000);
   return (
     <ContainerHome>
@@ -68,27 +68,39 @@ export default function Wallet() {
           </Header>
           <TransationArea>
             <Description>
-              {operations !== []
-                ? operations && operations.map(({ value, date, description }, index) =>
-                  <TransactionItem index={index} value={value} date={date} description={description} />)
-                : <Message>Não há registros de entrada ou saída</Message>}
+              {operations.length === 0 ? <Message>Não há registros de entrada ou saída</Message>
+                : operations.map((e, index) => {
+                  return (
+                    <TransactionItem
+                      key={index} value={e.value} date={e.date} description={e.description}
+                    />)
+                })}
             </Description>
-            <Balance>
-              <h2>{operations !== [] ? '' : ''}</h2>
-            </Balance>
           </TransationArea>
           <OverBalance>
-            <h1>SALDO</h1><span>R$ {total}</span>
+            {operations.length === 0 ? "" :
+              <><h1>SALDO</h1><span>R$ {total}</span></>
+            }
           </OverBalance>
           <Buttons>
-            <button onClick={() => navigate("/input")}>Nova Entrada</button>
-            <button onClick={() => navigate("/output")}>Nova Saída</button>
+            <button onClick={() => navigate("/input")}><Icon><ion-icon name="add-circle-outline"></ion-icon></Icon>Nova Entrada</button>
+            <button onClick={() => navigate("/output")}><Icon><ion-icon name="remove-circle-outline"></ion-icon></Icon>Nova Saída</button>
           </Buttons>
         </Container>
         : <Loading />}
     </ContainerHome>
   );
 };
+
+const Icon = styled.div`
+ion-icon {
+        position: relative;
+        left: -55px;
+        top: -18px;
+        font-size: 30px;
+        color: #FFFFFF;
+    }
+`;
 
 const OverBalance = styled.div`
   display: flex;
@@ -136,6 +148,8 @@ const Description = styled.div`
   padding-top: 10px;
 `;
 const Message = styled.div`
+  display: flex;
+  flex-direction: column;
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
@@ -144,12 +158,7 @@ const Message = styled.div`
   text-align: center;
   width: 180px;
   color: #868686;
-`;
-
-const Balance = styled.div`
-  background: #FFFFFF;
-  margin-bottom: 0;
-  flex-direction: column-reverse;
+  margin-left: 70px;
 `;
 
 const Container = styled.div`
