@@ -21,7 +21,7 @@ export default function SignUp() {
         const promise = axios.post(API, register);
         promise.then(() => {
             alert("Usuário cadastrado com sucesso!");
-            navigate("/");
+            navigate("/home");
         });
         promise.catch((err) => {
             alert(err);
@@ -37,7 +37,7 @@ export default function SignUp() {
                 <button type="submit">ENTRAR</button>
                 <Linkto>
                     <Link to="/">
-                        <a href="https://vercel.com/rudarabello/projeto13-mywallet-front/">
+                        <a href="#">
                             Já tem uma conta? Faça login!
                         </a>
                     </Link>
