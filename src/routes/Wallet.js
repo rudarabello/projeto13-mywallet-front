@@ -5,7 +5,7 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import Context from "../contexts/Context"
 import Profile from "../assets/Vector.png";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 import TransactionItem from "../components/TransactionItem";
 
 export default function Wallet() {

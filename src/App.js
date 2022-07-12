@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Context from "./contexts/Context";
-import Login from "./components/Login"
+import Login from "./routes/Login"
 import SignUp from "./components/SignUp.js";
-import Input from "./components/Input";
-import Output from "./components/Output";
+import Input from "./routes/Input";
+import Output from "./routes/Output";
 import { useState } from "react";
 import Fav from "./components/Favicon";
 import Hel from "./components/Helmet";
-import Wallet from "./components/Wallet";
+import Wallet from "./routes/Wallet";
 
 
 
