@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components";
 import axios from "axios";
 import { useState } from "react";
+import logo from '../assets/MyWallet.png';
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -28,15 +29,16 @@ export default function SignUp() {
         });
     }
     return (
-        <StyledCadastro>
+        <StyledCadastro>            
             <form onSubmit={handleSubmit}>
+            <Logo onClick={() => navigate('/')} ><img src={logo} /></Logo>
                 <input type="name" placeholder="Nome " onChange={(e) => setName(e.target.value)} />
                 <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
                 <input type="password" placeholder="Confirme a senha" onChange={(e) => setCPassword(e.target.value)} />
                 <button type="submit">ENTRAR</button>
                 <Linkto>
-                    <Link to="/">
+                    <Link to="/login">
                         <a href="#">
                             Já tem uma conta? Faça login!
                         </a>
@@ -109,4 +111,14 @@ const StyledCadastro = styled.div`
         text-decoration: underline;
         font-family: "Roboto";
     }
-`
+`;
+const Logo = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%;
+margin-bottom: 20px;
+img{
+    width: 100%;
+}
+`;

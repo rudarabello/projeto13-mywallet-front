@@ -52,7 +52,7 @@ export default function Login() {
         <StyledLogin>
             {loading === true ?
                 <Page>
-                    <img src={logo} alt="Logo My Wallet" />
+                    <img onClick={() => navigate('/')} src={logo} alt="Logo My Wallet" />
                     <Form onSubmit={handleLogin}>
                         <Input
                             onChange={(e) => {
@@ -78,7 +78,7 @@ export default function Login() {
                     </Form>
                     <Linkto>
                         <Link to="/sign-up">
-                            <a href="https://vercel.com/rudarabello/projeto13-mywallet-front/signup">
+                            <a href="#">
                                 Primeira vez? Cadastre-se!
                             </a>
                         </Link>
