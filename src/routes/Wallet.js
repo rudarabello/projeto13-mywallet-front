@@ -166,6 +166,15 @@ const Container = styled.div`
   max-width: 450px;
   min-width: 330px ;
   background: #8C11BE;
+  height: 100vh; 
+`;
+const ContainerHome = styled.div`
+  display: flex;
+  background: #8C11BE;
+  align-items: center;
+  align-content: center;
+  height: 100vh;  
+  flex-direction: column;
 `;
 const Header = styled.div`
   display: flex;
@@ -185,15 +194,6 @@ const Header = styled.div`
     width: 20px;
     height: 20px;
   }
-`;
-
-const ContainerHome = styled.div`
-  display: flex;
-  background: #8C11BE;
-  align-items: center;
-  align-content: center;
-  height: 100vh;  
-  flex-direction: column;
 `;
 
 const Buttons = styled.div`
