@@ -91,15 +91,22 @@ export default function Wallet() {
     </ContainerHome>
   );
 };
+const Container = styled.div`
+  padding-top: 50px;
+  max-width: 450px;
+  min-width: 330px ;
+  background: #8C11BE;
+  height: 90vh;
 
-const Icon = styled.div`
-ion-icon {
-        position: relative;
-        left: -55px;
-        top: -18px;
-        font-size: 30px;
-        color: #FFFFFF;
-    }
+`;
+const ContainerHome = styled.div`
+  display: flex;
+  background: #7511BE;
+  align-items: center;
+  align-content: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
 `;
 
 const OverBalance = styled.div`
@@ -160,23 +167,6 @@ const Message = styled.div`
   color: #868686;
   margin-left: 70px;
 `;
-
-const Container = styled.div`
-  padding-top: 50px;
-  max-width: 450px;
-  min-width: 330px ;
-  background: #8C11BE;
-
-`;
-const ContainerHome = styled.div`
-  display: flex;
-  background: #8C11BE;
-  align-items: center;
-  align-content: center;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-`;
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
@@ -223,4 +213,12 @@ const Buttons = styled.div`
     }
   }
 `;
+const Icon = styled.div`
+ion-icon {
+  position: relative;
+  left: -55px;
+  top: -18px;
+  font-size: 30px;
+  color: #FFFFFF;
+}`;
 
