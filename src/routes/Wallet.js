@@ -166,7 +166,7 @@ const Container = styled.div`
   max-width: 450px;
   min-width: 330px ;
   background: #8C11BE;
-  height: 100vh; 
+
 `;
 const ContainerHome = styled.div`
   display: flex;

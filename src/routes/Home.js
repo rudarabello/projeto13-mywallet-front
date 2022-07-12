@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
-
         <Container>
             <Header />
-            <h1>Seja bem-vindo!</h1>
             <Text>
+                <h1>Seja bem-vindo!</h1>
                 <p>My Wallet é um app que te ajuda com o gerenciamento dos recursos financeiros!</p>
                 <p>Com ele você pode categorizar seus recebimentos e gastos</p>
                 <p>gerar um gráfico para te ajudar a ver pra onde está indo seu dinheiro</p>
@@ -45,33 +44,19 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
-    h1{
-        margin-top: 20px;
-        font-weight: 900;
-        font-size: xx-large;
-    }
-    p{
-        font-family: 'Raleway';
-font-style: normal;
-color: black;
-font-weight: 700;
-font-size: 16px;
-line-height: 18px;
-        text-align: center;
-    }
+    gap: 40px;
 `;
 
 const Linkto1 = styled.div`
-text-decoration: none !important;
-a{
+    text-decoration: none !important;
+    a{
     font-family: 'Raleway';
-font-style: normal;
-color: #ffffff;
-font-weight: 700;
-font-size: 18px;
-line-height: 18px;
-text-decoration: none !important;
+    font-style: normal;
+    color: #ffffff;
+    font-weight: 700;   
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: none !important;
 }
 :hover {
     cursor: pointer;
@@ -80,15 +65,15 @@ text-decoration: none !important;
 `;
 
 const Linkto = styled.div`
-text-decoration: none !important;
-a{
+    text-decoration: none !important;
+    a{
     font-family: 'Raleway';
-font-style: normal;
-color: #ffffff;
-font-weight: 700;
-font-size: 18px;
-line-height: 18px;
-text-decoration: none !important;
+    font-style: normal;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: none !important;
 }
 :hover {
     cursor: pointer;
@@ -98,7 +83,23 @@ text-decoration: none !important;
 
 const Text = styled.div`
     max-width: 330px;
+    h1{
+        margin-top: 20px;
+        font-weight: 900;
+        font-size: xx-large;
+        text-align: center;
+        margin-bottom: 40px;
+    }
     p{
-        margin-bottom: 2em;
+    font-family: 'Raleway';
+    font-style: normal;
+    color: black;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 1.8em;
+    
     }
 `;
