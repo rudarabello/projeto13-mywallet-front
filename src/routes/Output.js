@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 
 
@@ -23,7 +24,7 @@ export default function UsersPage() {
         };
         const body = {
             type: "output",
-            value: value*-1,
+            value: value * -1,
             description: description,
         };
         const promise = axios.post(API, body, config
@@ -40,6 +41,9 @@ export default function UsersPage() {
     return (
         <ContainerUsers>
             <ButtonsFromApi>
+                <BackArrow onClick={() => navigate('/wallet')}>
+                    <IoMdArrowRoundBack color={'#ffffff'} height="40px" width="40px" />
+                </BackArrow>
                 <h1>Nova Saída</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="number" placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
@@ -110,6 +114,19 @@ h1{
     margin-bottom: 100px;
 }
 `;
+const BackArrow = styled.div`
+    position: fixed;
+    top: 40px;
+    left: 38px;
+    img {
+        width: 50px !important;
+        height: 40px !important;
+        :hover {
+        cursor: pointer;
+        }
+    }
+    `;
+
 
 
 
