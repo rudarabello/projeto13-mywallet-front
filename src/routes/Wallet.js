@@ -110,7 +110,7 @@ const ContainerHome = styled.div`
   align-content: center;
   height: 100vh;
   width: 100%;
-  min-height: 800px;
+  min-height: 750px;
   flex-direction: column;
 `;
 
