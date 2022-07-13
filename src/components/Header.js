@@ -7,7 +7,7 @@ function Header() {
     const navigate = useNavigate()
     return (
             <Container>
-                <Logo onClick={() => navigate('/')} ><img src={logo} width="40%" /></Logo>
+                <Logo onClick={() => navigate('/')} ><img src={logo} alt="logo"width="40%" /></Logo>
                 <button onClick={() => navigate('/login')}>Login</button>
             </Container>
     )

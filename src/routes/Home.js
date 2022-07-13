@@ -17,16 +17,12 @@ const Home = () => {
             </Text>
             <Linkto1>
                 <Link to="/sign-up">
-                    <a href="#">
-                        Primeira vez? Cadastre-se aqui!
-                    </a>
+                        <p>Primeira vez? Cadastre-se aqui!</p>
                 </Link>
             </Linkto1>
             <Linkto>
                 <Link to="/login">
-                    <a href="#">
-                        Já tem uma conta? Faça login!
-                    </a>
+                        <p>Já tem uma conta? Faça login!</p>
                 </Link>
             </Linkto>
         </Container>
@@ -48,8 +44,7 @@ const Container = styled.div`
 `;
 
 const Linkto1 = styled.div`
-    text-decoration: none !important;
-    a{
+    p{
     font-family: 'Raleway';
     font-style: normal;
     color: #ffffff;
@@ -65,8 +60,7 @@ const Linkto1 = styled.div`
 `;
 
 const Linkto = styled.div`
-    text-decoration: none !important;
-    a{
+    p{
     font-family: 'Raleway';
     font-style: normal;
     color: #ffffff;

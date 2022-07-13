@@ -81,13 +81,9 @@ export default function Login() {
                         />
                         <FormButton type="submit">ENTRAR</FormButton>
                     </Form>
-                    <Linkto>
-                        <Link to="/sign-up">
-                            <a href="#">
-                                Primeira vez? Cadastre-se!
-                            </a>
-                        </Link>
-                    </Linkto>
+                    <Link to="/sign-up">
+                        <Linkto>Primeira vez? Cadastre-se!</Linkto>
+                    </Link>
                 </Page> :
                 <Loading />}
         </StyledLogin>
@@ -96,18 +92,19 @@ export default function Login() {
 
 
 const Linkto = styled.div`
-text-decoration: none !important;
-a{
-    font-family: 'Raleway';
+margin-top: 8px;
+color: #FFFFFF;
+font-size: 14px;
+font-family: "Roboto";
 font-style: normal;
 font-weight: 700;
 font-size: 15px;
 line-height: 18px;
 text-decoration: none !important;
-}
 :hover {
     cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
+    text-decoration: none !important;
+    box-shadow: 0px 0px 10px rgba(000, 000, 999, 0.1);
     }
 `;
 
@@ -121,13 +118,6 @@ const StyledLogin = styled.div`
     justify-content: center;
     align-items: center;
     gap: 50px;
-    a{
-        margin-top: 8px;
-        color: #FFFFFF;
-        font-size: 14px;
-        text-decoration: underline;
-        font-family: "Roboto";
-    }
     img{
         width: 100%;
         height: 100%;

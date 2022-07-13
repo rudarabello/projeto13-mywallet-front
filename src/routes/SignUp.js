@@ -29,41 +29,40 @@ export default function SignUp() {
         });
     }
     return (
-        <StyledCadastro>            
+        <StyledCadastro>
             <form onSubmit={handleSubmit}>
-            <Logo onClick={() => navigate('/')} ><img src={logo} /></Logo>
+                <Logo onClick={() => navigate('/')} ><img src={logo} alt="logo" /></Logo>
                 <input type="name" placeholder="Nome " onChange={(e) => setName(e.target.value)} />
                 <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
                 <input type="password" placeholder="Confirme a senha" onChange={(e) => setCPassword(e.target.value)} />
                 <button type="submit">ENTRAR</button>
-                <Linkto>
-                    <Link to="/login">
-                        <a href="#">
-                            Já tem uma conta? Faça login!
-                        </a>
-                    </Link>
-                </Linkto>
             </form>
+            <Link to="/login">
+                <Linkto> Já tem uma conta? Faça login!</Linkto>
+            </Link>
         </StyledCadastro>
     )
 };
 
+
 const Linkto = styled.div`
-text-decoration: none !important;
-a{
-    font-family: 'Raleway';
+margin-top: 38px;
+color: #FFFFFF;
+font-size: 14px;
+font-family: "Roboto";
 font-style: normal;
 font-weight: 700;
 font-size: 15px;
 line-height: 18px;
 text-decoration: none !important;
-}
 :hover {
     cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
+    text-decoration: none !important;
+    box-shadow: 0px 0px 10px rgba(000, 000, 999, 0.1);
     }
 `;
+
 
 
 const StyledCadastro = styled.div`
@@ -103,13 +102,6 @@ const StyledCadastro = styled.div`
         font-size: 14px;
         font-weight: 700;
         color: #FFFFFF;
-    }
-    a{
-        margin-top: 8px;
-        color: #FFFFFF;
-        font-size: 14px;
-        text-decoration: underline;
-        font-family: "Roboto";
     }
 `;
 const Logo = styled.div`
