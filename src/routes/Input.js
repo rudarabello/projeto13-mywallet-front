@@ -27,7 +27,8 @@ export default function UsersPage() {
             type: "input",
             value: value * 1,
             description: description,
-            category: category
+            category: category,
+            subCategory: "input"
         };
         const promise = axios.post(API, body, config
         );
