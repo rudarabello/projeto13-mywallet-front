@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
@@ -15,9 +15,9 @@ export default function UsersPage() {
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
     const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
-    const [category, setCategory] = useState()
-    const [subCategory, setSubCategory] = useState()
-    const [renderS, setRenderS] = useState([])
+    const [category, setCategory] = useState();
+    const [subCategory, setSubCategory] = useState();
+    const [renderS, setRenderS] = useState([]);
     function handleSubmit(e) {
         e.preventDefault();
         const config = {
@@ -42,7 +42,7 @@ export default function UsersPage() {
             alert(err);
             navigate("/");
         });
-    }
+    };
     const categoryFromAPI = [
         { id: 0, text: 'Escolha categoria' },
         { id: 1, text: 'Básico' },
@@ -52,7 +52,7 @@ export default function UsersPage() {
         { id: 5, text: 'Extras' },
         { id: 6, text: 'Serviços' },
         { id: 7, text: 'Dízimos/Ofertas' }
-    ]
+    ];
     const basico = [
         { id: 0, text: 'Escolha sub-categoria' },
         { id: 1, text: 'Alimentação' },
@@ -79,17 +79,20 @@ export default function UsersPage() {
         { id: 5, text: 'Academia' },
         { id: 6, text: 'Dentista' },
         { id: 7, text: 'Medicamentos' }
-    ]
-    useEffect(() => {
+    ];
+    const tempAxiosFunction = useRef();
+    const axiosFunction = () => {
         if (category === 'Básico') {
             setRenderS(basico)
-            
         }
         if (category === 'Saúde') {
             setRenderS(saude)
-            
         }
-    }, [category])
+    }
+    tempAxiosFunction.current = axiosFunction;
+    useEffect(() => {
+        tempAxiosFunction.current();
+    }, [category]);
     return (
         <ContainerUsers>
             <ButtonsFromApi>
