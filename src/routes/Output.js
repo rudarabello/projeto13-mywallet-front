@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect} from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
@@ -80,18 +80,13 @@ export default function UsersPage() {
         { id: 6, text: 'Dentista' },
         { id: 7, text: 'Medicamentos' }
     ];
-    const tempAxiosFunction = useRef();
-    const axiosFunction = () => {
+    useEffect(() => {
         if (category === 'Básico') {
             setRenderS(basico)
         }
         if (category === 'Saúde') {
             setRenderS(saude)
         }
-    }
-    tempAxiosFunction.current = axiosFunction;
-    useEffect(() => {
-        tempAxiosFunction.current();
     }, [category]);
     return (
         <ContainerUsers>
