@@ -58,7 +58,7 @@ export default function Login() {
             {loading === true ?
                 <Page>
                     <img onClick={() => navigate('/')} src={logo} alt="Logo My Wallet" />
-                    <Form onSubmit={handleLogin}>
+                    <form onSubmit={handleLogin}>
                         <Input
                             onChange={(e) => {
                                 setEmail(e.target.value);
@@ -80,7 +80,7 @@ export default function Login() {
                             autoComplete="password"
                         />
                         <FormButton type="submit">ENTRAR</FormButton>
-                    </Form>
+                    </form>
                     <Link to="/sign-up">
                         <Linkto>Primeira vez? Cadastre-se!</Linkto>
                     </Link>
@@ -129,17 +129,14 @@ display: flex;
 flex-direction: column;
 align-items: center;
 max-width: 240px;
-`;
-
-
-const Form = styled.form`
-width: 100%;
+form{
+    width: 100%;
 display: flex;
 flex-direction: column;
 gap: 6px;
 margin-bottom: 25px;
+}
 `;
-
 
 
 const Input = styled.input`
