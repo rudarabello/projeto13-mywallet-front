@@ -7,7 +7,7 @@ function Header() {
     const navigate = useNavigate()
     return (
             <Container>
-                <button onClick={() => navigate('/sing-up')}>Cadastre-se</button>
+                <button onClick={() => navigate('/sign-up')}>Cadastre-se</button>
                 <Logo onClick={() => navigate('/')} ><img src={logo} alt="logo"width="35%" /></Logo>
                 <button onClick={() => navigate('/login')}>Entrar</button>
             </Container>
