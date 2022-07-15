@@ -18,19 +18,19 @@ export default function UsersPage() {
     const [category, setCategory] = useState();
     const [subCategory, setSubCategory] = useState();
     const [renderS, setRenderS] = useState([]);
+    const body = {
+        type: "output",
+        value: value * -1,
+        description: description,
+        category: category,
+        subCategory: subCategory
+    };
     function handleSubmit(e) {
         e.preventDefault();
         const config = {
             headers: {
                 Authorization: `Bearer ${data.token}`
             }
-        };
-        const body = {
-            type: "output",
-            value: value * -1,
-            description: description,
-            category: category,
-            subCategory: subCategory
         };
         const promise = axios.post(API, body, config
         );
@@ -88,6 +88,7 @@ export default function UsersPage() {
             setRenderS(saude)
         }
     }, [category]);
+    console.log(body)
     return (
         <Page>
             <BackArrow onClick={() => navigate('/wallet')}>
@@ -96,8 +97,8 @@ export default function UsersPage() {
             <Content>
                 <h1>Nova Saída</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="number" placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
-                    <input type="text" placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} />
+                    <input type="number" step=".01"required placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
+                    <input type="text" required placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} />
                     <select onClick={(e) => setCategory(e.target.value)}>
                         {categoryFromAPI.map((category) => {
                             return (
@@ -110,8 +111,8 @@ export default function UsersPage() {
                                 <option key={category.id} value={category.text}>{category.text}</option>)
                         })}
                     </select>
+                    <button type="submit">Salvar Saída</button>
                 </form>
-                <button type="submit">Salvar Saída</button>
             </Content>
         </Page>
     );
