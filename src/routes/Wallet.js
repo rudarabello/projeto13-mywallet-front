@@ -36,10 +36,14 @@ export default function Wallet() {
     if (operations) {
       const values = operations.map(({ value }) => { return value });
       let balance = 0;
+      console.log(values)
       for (let j = 0; j < values.length; j++) {
         balance += values[j]
       }
+      balance = balance.toFixed(2);
+      balance = balance.toString().replace(".", ",");
       setTotal(balance);
+      console.log(balance)
     }
   }, [operations]);
   function logoutButton() {
@@ -74,9 +78,12 @@ export default function Wallet() {
             <Description>
               {operations.length === 0 ? <Message>Não há registros de entrada ou saída</Message>
                 : operations.map((e, index) => {
+                  let valueTransaction = e.value
+                  valueTransaction = valueTransaction.toFixed(2);
+                  valueTransaction = valueTransaction.toString().replace(".", ",");
                   return (
                     <TransactionItem
-                      key={index} value={e.value} date={e.date} description={e.description}
+                      key={index} value={valueTransaction} date={e.date} description={e.description}
                     />)
                 })}
             </Description>

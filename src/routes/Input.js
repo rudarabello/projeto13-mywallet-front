@@ -16,6 +16,13 @@ export default function UsersPage() {
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");
     const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    const body = {
+        type: "input",
+        value: value * 1,
+        description: description,
+        category: category,
+        subCategory: "input"
+    };
     function handleSubmit(e) {
         e.preventDefault();
         const config = {
@@ -23,13 +30,7 @@ export default function UsersPage() {
                 Authorization: `Bearer ${data.token}`
             }
         };
-        const body = {
-            type: "input",
-            value: value * 1,
-            description: description,
-            category: category,
-            subCategory: "input"
-        };
+        
         const promise = axios.post(API, body, config
         );
         promise.then(() => {
@@ -41,6 +42,7 @@ export default function UsersPage() {
             navigate("/");
         });
     }
+    console.log(body)
     return (
         <Page>
             <BackArrow onClick={() => navigate('/wallet')}>
@@ -49,7 +51,7 @@ export default function UsersPage() {
             <Content>
                 <h1>Nova entrada</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="number" required placeholder="Valor" onChange={
+                    <input type="number" step=".01" required placeholder="Valor" onChange={
                         (e) => setValue(e.target.value)} />
                     <input type="text" required placeholder="Descrição" onChange={
                         (e) => setDescription(e.target.value)} />
