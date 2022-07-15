@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -15,16 +14,6 @@ const Home = () => {
                 <p>retirar extratos por periodos</p>
                 <p>e criar alerta por email de contas a pagar! </p>
             </Text>
-            <Linkto1>
-                <Link to="/sign-up">
-                        <p>Primeira vez? Cadastre-se aqui!</p>
-                </Link>
-            </Linkto1>
-            <Linkto>
-                <Link to="/login">
-                        <p>Já tem uma conta? Faça login!</p>
-                </Link>
-            </Linkto>
         </Container>
     )
 }
@@ -41,38 +30,6 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 40px;
-`;
-
-const Linkto1 = styled.div`
-    p{
-    font-family: 'Raleway';
-    font-style: normal;
-    color: #ffffff;
-    font-weight: 700;   
-    font-size: 18px;
-    line-height: 18px;
-    text-decoration: none !important;
-}
-:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
-    }
-`;
-
-const Linkto = styled.div`
-    p{
-    font-family: 'Raleway';
-    font-style: normal;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 18px;
-    text-decoration: none !important;
-}
-:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
-    }
 `;
 
 const Text = styled.div`

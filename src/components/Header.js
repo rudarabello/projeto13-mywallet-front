@@ -7,8 +7,9 @@ function Header() {
     const navigate = useNavigate()
     return (
             <Container>
-                <Logo onClick={() => navigate('/')} ><img src={logo} alt="logo"width="40%" /></Logo>
-                <button onClick={() => navigate('/login')}>Login</button>
+                <button onClick={() => navigate('/sing-up')}>Cadastre-se</button>
+                <Logo onClick={() => navigate('/')} ><img src={logo} alt="logo"width="35%" /></Logo>
+                <button onClick={() => navigate('/login')}>Entrar</button>
             </Container>
     )
 }
@@ -16,14 +17,14 @@ function Header() {
 export default Header
 
 const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
     height: 100px;
     width: 100%;
     padding: 0 20px;
     display: flex;
     align-items: center;
     background-color: #A328D6;
-    padding-left: 20px;
-    padding-right: 20px;
     position: fixed;
     top: 0;
     button{
@@ -39,16 +40,13 @@ const Container = styled.div`
     line-height: 16px;
     color: #FFFFFF;
     margin-right: 20px;
+    margin-left: 20px;
     }
 `;
 const Logo = styled.div`
-    display: flex;
-    width: 100%;
-    img {
-    display: block;
+    img{
     max-width: 120px;
-    margin-left: 10px;
-    margin-right: auto;
-}
+    min-width: 100px;
+    }
 
 `;
