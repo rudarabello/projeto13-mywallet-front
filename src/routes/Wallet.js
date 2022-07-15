@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect, useRef } from 'react';
 import styled from "styled-components";
 import Context from "../contexts/Context"
-import Profile from "../assets/Vector.png";
 import Loading from "../components/Loading";
 import TransactionItem from "../components/TransactionItem";
+import { TiDocumentText } from 'react-icons/ti';
+import { AiOutlineMinusCircle } from 'react-icons/ai';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+import { VscPieChart } from 'react-icons/vsc';
+import { IoIosLogOut } from 'react-icons/io';
+
 
 export default function Wallet() {
   const { data } = useContext(Context);
@@ -61,66 +66,72 @@ export default function Wallet() {
   };
   setTimeout(() => setLoading(true), 2000);
   return (
-    <ContainerHome>
+    <Page>
       {loading === true ?
-        <Container>
-          <Header>
-            <h1>Olá, {data.name}</h1>
-            <img
-              onClick={() => logoutButton()}
-              src={Profile}
-              alt="Botão sair"
-              width="10px"
-              height="10px"
-            />
-          </Header>
-          <TransationArea>
-            <Description>
-              {operations.length === 0 ? <Message>Não há registros de entrada ou saída</Message>
-                : operations.map((e, index) => {
-                  let valueTransaction = e.value
-                  valueTransaction = valueTransaction.toFixed(2);
-                  valueTransaction = valueTransaction.toString().replace(".", ",");
-                  return (
-                    <TransactionItem
-                      key={index} value={valueTransaction} date={e.date} description={e.description}
-                    />)
-                })}
-            </Description>
-          </TransationArea>
-          <OverBalance>
-            {operations.length === 0 ? "" :
-              <><h1>SALDO</h1><span>R$ {total}</span></>
-            }
-          </OverBalance>
-          <Buttons>
-            <button onClick={() => navigate("/input")}><Icon><ion-icon name="add-circle-outline"></ion-icon></Icon>Nova Entrada</button>
-            <button onClick={() => navigate("/output")}><Icon><ion-icon name="remove-circle-outline"></ion-icon></Icon>Nova Saída</button>
-          </Buttons>
-        </Container>
+        <><BackArrow onClick={() => logoutButton()}>
+          <IoIosLogOut color={'#ffffff'} fontSize="2.5em" />
+        </BackArrow>
+          <Content>
+            <Header>
+              <h1>Olá, {data.name}</h1>
+            </Header>
+            <TransationArea>
+              <Description>
+                {operations.length === 0 ? <Message>Não há registros de entrada ou saída</Message>
+                  : operations.map((e, index) => {
+                    let valueTransaction = e.value;
+                    valueTransaction = valueTransaction.toFixed(2);
+                    valueTransaction = valueTransaction.toString().replace(".", ",");
+                    return (
+                      <TransactionItem
+                        key={index} value={valueTransaction} date={e.date} description={e.description} />);
+                  })}
+              </Description>
+            </TransationArea>
+            <OverBalance>
+              {operations.length === 0 ? "" :
+                <><h1>SALDO</h1><span>R$ {total}</span></>}
+            </OverBalance>
+            <Buttons>
+              <button onClick={() => navigate("/input")}>
+                <span>Nova Entrada</span><Icon><AiOutlinePlusCircle fontSize="2.0em" /></Icon>
+              </button>
+              <button onClick={() => navigate("/output")}>
+                <span>Nova Saída</span><Icon><AiOutlineMinusCircle fontSize="2.0em" /></Icon>
+              </button>
+              <button>
+                <span>Extratos</span><Icon><TiDocumentText fontSize="2.0em" /></Icon>
+              </button>
+              <button>
+                <span>Gráficos</span><Icon><VscPieChart fontSize="2.0em" /></Icon>
+              </button>
+            </Buttons>
+          </Content></>
         : <Loading />}
-    </ContainerHome>
+    </Page>
   );
 };
-const Container = styled.div`
-  padding-top: 50px;
-  max-width: 450px;
-  min-width: 330px ;
-  background: #8C11BE;
-  height: 90vh;
+
+const Page = styled.div`
+background: #8C11BE;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`;
+const Content = styled.div`
+width: 70%;
+max-height: 800px;
+max-width: 260px;
+display: flex;
+flex-direction: column;
+align-items: center;
 
 `;
-const ContainerHome = styled.div`
-  display: flex;
-  background: #8C11BE;
-  align-items: center;
-  align-content: center;
-  height: 100vh;
-  width: 100%;
-  min-height: 750px;
-  flex-direction: column;
-`;
-
 const OverBalance = styled.div`
   display: flex;
   justify-content: space-between;
@@ -180,6 +191,7 @@ const Message = styled.div`
   margin-left: 70px;
 `;
 const Header = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -192,24 +204,24 @@ const Header = styled.div`
     font-weight: 700;
     font-size: 26px;
     line-height: 31px;
-  }
-  img {
-    width: 20px;
-    height: 20px;
+    
   }
 `;
 
 const Buttons = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 50px;
   width: 100%;
-  flex-direction: row;
-  position: relative;
+  flex-direction: column;
     button {
-    width: 155px;
-    height: 114px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 15px;
+    width: 100%;
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: #A328D6;
@@ -227,11 +239,15 @@ const Buttons = styled.div`
   }
 `;
 const Icon = styled.div`
-ion-icon {
-  position: relative;
-  left: -55px;
-  top: -18px;
-  font-size: 30px;
-  color: #FFFFFF;
-}`;
+position: relative;
+color: #FFFFFF;
+`;
+const BackArrow = styled.div`
+    position: fixed;
+    top: 20px;
+    right: 38px;
+    font-size: 16px;
+`;
+
+
 
