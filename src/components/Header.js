@@ -28,7 +28,7 @@ const Container = styled.div`
     position: fixed;
     top: 0;
     button{
-    width: 120px;
+    min-width: 110px;
     height: 45px;
     border: none;
     background: #a343d5;
@@ -39,12 +39,15 @@ const Container = styled.div`
     font-size: 14px;
     line-height: 16px;
     color: #FFFFFF;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
     }
 `;
 const Logo = styled.div`
     img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 120px;
     min-width: 100px;
     }

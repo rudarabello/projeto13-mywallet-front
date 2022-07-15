@@ -64,13 +64,13 @@ export default function Wallet() {
       console.log(err);
     })
   };
-  setTimeout(() => setLoading(true), 2000);
+  setTimeout(() => setLoading(true), 1000);
   return (
     <Page>
       {loading === true ?
-        <><BackArrow onClick={() => logoutButton()}>
+        <><LogOut onClick={() => logoutButton()}>
           <IoIosLogOut color={'#ffffff'} fontSize="2.5em" />
-        </BackArrow>
+        </LogOut>
           <Content>
             <Header>
               <h1>Olá, {data.name}</h1>
@@ -123,14 +123,18 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
+const LogOut = styled.div`
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    font-size: 15px;
+`;
 const Content = styled.div`
 width: 70%;
-max-height: 800px;
 max-width: 260px;
 display: flex;
 flex-direction: column;
 align-items: center;
-
 `;
 const OverBalance = styled.div`
   display: flex;
@@ -210,8 +214,7 @@ const Header = styled.div`
 
 const Buttons = styled.div`
   display: flex;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
   width: 100%;
   flex-direction: column;
     button {
@@ -242,12 +245,3 @@ const Icon = styled.div`
 position: relative;
 color: #FFFFFF;
 `;
-const BackArrow = styled.div`
-    position: fixed;
-    top: 20px;
-    right: 38px;
-    font-size: 16px;
-`;
-
-
-
