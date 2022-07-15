@@ -118,6 +118,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 100vh;
+min-height: 850px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -130,8 +131,8 @@ const LogOut = styled.div`
     font-size: 15px;
 `;
 const Content = styled.div`
-width: 70%;
-max-width: 260px;
+width: 80%;
+max-width: 300px;
 display: flex;
 flex-direction: column;
 align-items: center;
