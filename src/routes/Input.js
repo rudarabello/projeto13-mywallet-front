@@ -53,7 +53,7 @@ export default function UsersPage() {
                 <form onSubmit={handleSubmit}>
                     <input type="number" step=".01" required placeholder="Valor" onChange={
                         (e) => setValue(e.target.value)} />
-                    <input type="text" required placeholder="Descrição" onChange={
+                    <input type="text" max="14" required placeholder="Descrição" onChange={
                         (e) => setDescription(e.target.value)} />
                     <select onClick={(e) => setCategory(e.target.value)}>
                         <option value="">Escolha a categoria</option>

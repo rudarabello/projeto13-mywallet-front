@@ -97,8 +97,8 @@ export default function UsersPage() {
             <Content>
                 <h1>Nova Saída</h1>
                 <form onSubmit={handleSubmit}>
-                    <input type="number" step=".01"required placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
-                    <input type="text" required placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} />
+                    <input type="number" step=".01" required placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
+                    <input type="text" max="14" required placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} />
                     <select onClick={(e) => setCategory(e.target.value)}>
                         {categoryFromAPI.map((category) => {
                             return (

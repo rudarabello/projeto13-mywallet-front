@@ -11,6 +11,7 @@ import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { VscPieChart } from 'react-icons/vsc';
 import { IoIosLogOut } from 'react-icons/io';
+import { AiOutlineUnorderedList } from 'react-icons/ai';
 
 
 export default function Wallet() {
@@ -94,16 +95,19 @@ export default function Wallet() {
             </OverBalance>
             <Buttons>
               <button onClick={() => navigate("/input")}>
-                <span>Nova Entrada</span><Icon><AiOutlinePlusCircle fontSize="2.0em" /></Icon>
+                <span>Nova Entrada</span><Icon><AiOutlinePlusCircle fontSize="1.5em" /></Icon>
               </button>
               <button onClick={() => navigate("/output")}>
-                <span>Nova Saída</span><Icon><AiOutlineMinusCircle fontSize="2.0em" /></Icon>
+                <span>Nova Saída</span><Icon><AiOutlineMinusCircle fontSize="1.5em" /></Icon>
               </button>
               <button>
-                <span>Extratos</span><Icon><TiDocumentText fontSize="2.0em" /></Icon>
+                <span>Extratos</span><Icon><TiDocumentText fontSize="1.5em" /></Icon>
               </button>
               <button>
-                <span>Gráficos</span><Icon><VscPieChart fontSize="2.0em" /></Icon>
+                <span>Gráficos</span><Icon><VscPieChart fontSize="1.5em" /></Icon>
+              </button>
+              <button>
+                <span>Categorias</span><Icon><AiOutlineUnorderedList fontSize="1.5em" /></Icon>
               </button>
             </Buttons>
           </Content></>
@@ -125,9 +129,10 @@ justify-content: center;
 align-items: center;
 `;
 const LogOut = styled.div`
-    position: fixed;
+    text-align: end;
+    width: 100% ;
     top: 20px;
-    right: 28px;
+    padding-right: 28px;
     font-size: 15px;
 `;
 const Content = styled.div`
@@ -243,6 +248,7 @@ const Buttons = styled.div`
   }
 `;
 const Icon = styled.div`
+padding-top: 3px;
 position: relative;
 color: #FFFFFF;
 `;
