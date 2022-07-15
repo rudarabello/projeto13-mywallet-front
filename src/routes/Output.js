@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect} from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
@@ -89,11 +89,11 @@ export default function UsersPage() {
         }
     }, [category]);
     return (
-        <ContainerUsers>
-            <ButtonsFromApi>
-                <BackArrow onClick={() => navigate('/wallet')}>
-                    <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
-                </BackArrow>
+        <Page>
+            <BackArrow onClick={() => navigate('/wallet')}>
+                <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
+            </BackArrow>
+            <Content>
                 <h1>Nova Saída</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="number" placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
@@ -110,14 +110,14 @@ export default function UsersPage() {
                                 <option key={category.id} value={category.text}>{category.text}</option>)
                         })}
                     </select>
-                    <FormButton type="submit">Salvar Saída</FormButton>
                 </form>
-            </ButtonsFromApi>
-        </ContainerUsers>
+                <button type="submit">Salvar Saída</button>
+            </Content>
+        </Page>
     );
 };
 
-const ContainerUsers = styled.div`
+const Page = styled.div`
 background: #8C11BE;
 display: flex;
 align-items: center;
@@ -128,15 +128,31 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
-const ButtonsFromApi = styled.div`
+const Content = styled.div`
 width: 70%;
+max-height: 600px;
 max-width: 260px;
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-top: 25%;
-margin-bottom: 40%;
-
+button{
+width: 100%;
+height: 100px;
+border: none;
+background: #A328D6;
+border-radius: 8px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+color: #FFFFFF;
+margin-top: 20px;
+:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
+    }
+};
 select,input {
     background-color: #ffffff;
     color: #ADADAD;
@@ -156,30 +172,13 @@ h1{
     font-weight: 700;
     font-size: 26px;
     line-height: 31px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 `;
 const BackArrow = styled.div`
     position: fixed;
-    top: 40px;
+    top: 20px;
     left: 38px;
-    `;
-
-
-const FormButton = styled.button`
-width: 100%;
-height: 100px;
-border: none;
-background: #A328D6;
-border-radius: 8px;
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: 16px;
-color: #FFFFFF;
-margin-top: 20px;
 `;
-
 
 

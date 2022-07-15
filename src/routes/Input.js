@@ -42,11 +42,11 @@ export default function UsersPage() {
         });
     }
     return (
-        <ContainerUsers>
-            <Main>
-                <BackArrow onClick={() => navigate('/wallet')}>
-                    <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em"/>
-                </BackArrow>
+        <Page>
+            <BackArrow onClick={() => navigate('/wallet')}>
+                <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
+            </BackArrow>
+            <Content>
                 <h1>Nova entrada</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="number" required placeholder="Valor" onChange={
@@ -63,12 +63,12 @@ export default function UsersPage() {
                     </select>
                     <button type="submit">Salvar Entrada</button>
                 </form>
-            </Main>
-        </ContainerUsers>
+            </Content>
+        </Page>
     );
 };
 
-const ContainerUsers = styled.div`
+const Page = styled.div`
 background: #8C11BE;
 display: flex;
 align-items: center;
@@ -79,38 +79,13 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
-const Main = styled.div`
+const Content = styled.div`
 width: 70%;
+max-height: 600px;
 max-width: 260px;
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-top: 25%;
-margin-bottom: 20%;
-h1{
-    width: 100%;
-    text-align: start;
-    color: white;
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 31px;
-    margin-bottom: 50px;
-};
-form{
-    max-width: 256px;
-};
-
-select, input{
-    background-color: #ffffff;
-    color: #ADADAD;
-    border: none;
-    border-radius: 5px;
-    margin-top: 18px;
-    width: 100%;
-    height: 40px;
-}
 button{
     width: 100%;
     height: 114px;
@@ -130,9 +105,29 @@ button{
     box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
     }
 };
+select, input{
+    background-color: #ffffff;
+    color: #ADADAD;
+    border: none;
+    border-radius: 5px;
+    margin-top: 18px;
+    width: 100%;
+    height: 40px;
+}
+h1{
+    width: 100%;
+    text-align: start;
+    color: white;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 31px;
+    margin-bottom: 50px;
+};
 `;
 const BackArrow = styled.div`
     position: fixed;
-    top: 40px;
+    top: 20px;
     left: 38px;
-    `;
+`;
