@@ -7,7 +7,7 @@ import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
 
-const CategorysOut = () => {
+const SubCategorysOut = () => {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [description, setDescription] = useState("");
@@ -41,21 +41,20 @@ const CategorysOut = () => {
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>
-                <h1>Suas categorias</h1>
+                <h1>Suas sub categorias</h1>
                 <TransitionArea>
                 </TransitionArea>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" max="14" required placeholder="Nova categoria" onChange={
+                    <input type="text" max="14" required placeholder="Nova sub categoria" onChange={
                         (e) => setDescription(e.target.value)} />
                     <button type="submit">Atualizar</button>
-                    <button onClick={() => navigate('/category/saida/subcategoria')}>Sub Categorias</button>
                 </form>
             </Content>
         </Page>
     );
 };
 
-export default CategorysOut
+export default SubCategorysOut
 
 const TransitionArea = styled.div`
 background-color: #FFFFFF;
@@ -117,12 +116,12 @@ select, input{
 }
 h1{
     width: 100%;
-    text-align: start;
+    text-align: center;
     color: white;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 22px;
     line-height: 31px;
     margin-bottom: 15px;
 };

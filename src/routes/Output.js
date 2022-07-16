@@ -9,7 +9,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 
 
 
-export default function UsersPage() {
+export default function Output() {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [value, setValue] = useState("");

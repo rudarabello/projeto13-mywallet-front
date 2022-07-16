@@ -12,6 +12,7 @@ import Home from "./routes/Home";
 import Categorys from "./routes/Categorys";
 import CategorysIn from "./routes/CategorysIn";
 import CategorysOut from "./routes/CategorysOut";
+import SubCategorysOut from "./routes/SubCategorysOut";
 
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
                     <Route path="/category" element={<Categorys />} />
                     <Route path="/category/entrada" element={<CategorysIn />} />
                     <Route path="/category/saida" element={<CategorysOut />} />
+                    <Route path="/category/saida/subcategoria" element={<SubCategorysOut />} />
                 </Routes>
             </BrowserRouter>
         </Context.Provider>
