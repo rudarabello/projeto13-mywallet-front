@@ -16,7 +16,7 @@ const Home = () => {
                 <p>Com ele você pode categorizar seus recebimentos e gastos</p>
                 <p>gerar um gráfico para te ajudar a ver pra onde está indo seu dinheiro</p>
                 <p>retirar extratos por periodos</p>
-                <p>e criar alerta por email de contas a pagar! </p>
+                <p>e criar alertas por email de contas a pagar! </p>
             </TextB>
         </Container>
     )
@@ -36,9 +36,12 @@ const TextA = styled.div`
     z-index: 1;
     max-width: 330px;
     margin-top: 120px;
-        font-weight: 900;
-        font-size: xx-large;
-        text-align: center;
+    font-weight: 900;
+    font-size: 35px;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Raleway';
+    font-style: normal;
 `;
 
 const TextB = styled.div`
@@ -49,15 +52,16 @@ const TextB = styled.div`
     text-align: center;
     margin-bottom: 40px;
     p{
+    padding: 15px;
     font-family: 'Raleway';
     font-style: normal;
-    color: black;
     font-weight: 700;
     font-size: 16px;
     line-height: 18px;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 1.8em;
+    color: #ffffff;
     
     }
 `;
