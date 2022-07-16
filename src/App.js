@@ -9,7 +9,9 @@ import Fav from "./components/Favicon";
 import Hel from "./components/Helmet";
 import Wallet from "./routes/Wallet";
 import Home from "./routes/Home";
-
+import Categorys from "./routes/Categorys";
+import CategorysIn from "./routes/CategorysIn";
+import CategorysOut from "./routes/CategorysOut";
 
 
 export default function App() {
@@ -26,6 +28,9 @@ export default function App() {
                     <Route path="/wallet" element={<Wallet />} />
                     <Route path="/input" element={<Input />} />
                     <Route path="/output" element={<Output />} />
+                    <Route path="/category" element={<Categorys />} />
+                    <Route path="/category/entrada" element={<CategorysIn />} />
+                    <Route path="/category/saida" element={<CategorysOut />} />
                 </Routes>
             </BrowserRouter>
         </Context.Provider>

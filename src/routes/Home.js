@@ -37,8 +37,8 @@ const TextA = styled.div`
     max-width: 330px;
     margin-top: 120px;
     font-weight: 900;
-    font-size: 35px;
-    text-align: center;
+    font-size: 25px;
+    padding-left: 5px;
     color: #ffffff;
     font-family: 'Raleway';
     font-style: normal;

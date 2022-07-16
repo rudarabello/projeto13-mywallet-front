@@ -106,7 +106,7 @@ export default function Wallet() {
               <button>
                 <span>Gráficos</span><Icon><VscPieChart fontSize="1.5em" /></Icon>
               </button>
-              <button>
+              <button onClick={() => navigate("/category")}>
                 <span>Categorias</span><Icon><AiOutlineUnorderedList fontSize="1.5em" /></Icon>
               </button>
             </Buttons>
