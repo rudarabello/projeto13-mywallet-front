@@ -17,13 +17,14 @@ function Header() {
 export default Header
 
 const Container = styled.div`
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     height: 100px;
     width: 100%;
-    padding: 0 20px;
     display: flex;
-    align-items: center;
     background-color: #A328D6;
     position: fixed;
     top: 0;
