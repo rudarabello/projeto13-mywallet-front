@@ -12,8 +12,7 @@ function Footer() {
         <a href='https://twitter.com/rudarabello'><BsTwitter /></a>
       </Contact>
       <CopyRights>
-        <p> <a href="mailto:ruda.rabello@unifesp.br">ruda.rabello@unifesp.br</a></p>
-        <p>© Rudá Rabello. All Rights Reserved.</p>
+        <span>Develop by © Rudá Rabello. All Rights Reserved.</span>
       </CopyRights>
     </Container>
   )
@@ -38,6 +37,7 @@ flex-direction: row;
 justify-content: space-around;
 font-size: 32px;
 margin-top: 20px;
+text-decoration: none;
 `;
 const CopyRights = styled.div`
 display: flex;
@@ -51,9 +51,12 @@ font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
 line-height: 22px;
-font-size: 13px;
+font-size: 12px;
 a{
   color: #FFFFFF;
+}
+span{
+  font-size: 10px;
 }
 
 `;
