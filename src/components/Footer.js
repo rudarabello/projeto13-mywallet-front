@@ -29,7 +29,6 @@ background-color: #A328D6;
 height: 100%;
 
 `;
-
 const Contact = styled.div`
 width: 300px;
 display: flex;
@@ -38,13 +37,14 @@ justify-content: space-around;
 font-size: 32px;
 margin-top: 20px;
 text-decoration: none;
+color:#000000 ;
 `;
 const CopyRights = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
 width: 300px;
-color: #FFFFFF;
+color: #f1f1f1;
 margin-top: 10px;
 margin-bottom: 10px;
 font-family: 'Inter';
@@ -52,9 +52,6 @@ font-style: normal;
 font-weight: 700;
 line-height: 22px;
 font-size: 12px;
-a{
-  color: #FFFFFF;
-}
 span{
   font-size: 10px;
 }
