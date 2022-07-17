@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useRef, useEffect} from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import TransactionItem from "../components/TransactionItem";
 
 
 const CategorysIn = () => {
@@ -80,6 +81,19 @@ const CategorysIn = () => {
 };
 
 export default CategorysIn
+const Message = styled.div`
+display: flex;
+flex-direction: column;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 23px;
+text-align: center;
+width: 180px;
+color: #868686;
+margin-left: 70px;
+`;
 
 const Description = styled.div`
 background: #FFFFFF;
