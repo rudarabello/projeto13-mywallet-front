@@ -11,7 +11,7 @@ const CategorysIn = () => {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [description, setDescription] = useState("");
-    const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    const APIPOST = "https://back-project-mywallet-ruda.herokuapp.com/chart-in";
     const body = {
         description: description
     };
@@ -22,8 +22,7 @@ const CategorysIn = () => {
                 Authorization: `Bearer ${data.token}`
             }
         };
-        
-        const promise = axios.post(API, body, config
+        const promise = axios.post(APIPOST, body, config
         );
         promise.then(() => {
             alert("Registrado com sucesso!");
@@ -34,7 +33,25 @@ const CategorysIn = () => {
             navigate("/");
         });
     }
-    console.log(body)
+    const tempAxiosFunction = useRef();
+    const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/chart-in`;
+    const [categorys, setCategorys] = useState();
+    const axiosFunction = () => {
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.get(ApiGet, config);
+        promise.then(response => setCategorys(response.data));
+        promise.catch(() => {
+            alert("Por favor faça o login!");
+            navigate("/");
+        }
+        )
+    }
+    tempAxiosFunction.current = axiosFunction;
+
+    useEffect(() => {
+        tempAxiosFunction.current();
+    }, []);
+
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category')}>
@@ -43,6 +60,14 @@ const CategorysIn = () => {
             <Content>
                 <h1>Suas categorias</h1>
                 <TransitionArea>
+                    <Description>
+                        {categorys.length === 0 ? <Message>Não há registros de entrada ou saída</Message>
+                            : categorys.map((e, index) => {
+                                return (
+                                    <TransactionItem
+                                        key={index} date={e.date} description={e.description} />);
+                            })}
+                    </Description>
                 </TransitionArea>
                 <form onSubmit={handleSubmit}>
                     <input type="text" max="14" required placeholder="Nova categoria" onChange={
@@ -55,6 +80,12 @@ const CategorysIn = () => {
 };
 
 export default CategorysIn
+
+const Description = styled.div`
+background: #FFFFFF;
+width: 100%;
+padding-top: 10px;
+`;
 
 const TransitionArea = styled.div`
 background-color: #FFFFFF;
