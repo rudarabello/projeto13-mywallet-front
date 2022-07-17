@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Banner from '../components/Banner';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
                 <p>retirar extratos por periodos</p>
                 <p>e criar alertas por email de contas a pagar! </p>
             </TextB>
+            <Footer />
         </Container>
     )
 }
