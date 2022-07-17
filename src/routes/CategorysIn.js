@@ -37,7 +37,7 @@ const CategorysIn = () => {
     console.log(body)
     return (
         <Page>
-            <BackArrow onClick={() => navigate('/wallet')}>
+            <BackArrow onClick={() => navigate('/category')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>

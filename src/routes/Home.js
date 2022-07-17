@@ -16,14 +16,13 @@ const Home = () => {
                 <p>My Wallet é um app que te ajuda com o gerenciamento dos recursos financeiros!</p>
                 <p>Com ele você pode categorizar seus recebimentos e gastos</p>
                 <p>gerar um gráfico para te ajudar a ver pra onde está indo seu dinheiro</p>
-                <p>retirar extratos por periodos</p>
-                <p>e criar alertas por email de contas a pagar! </p>
+                <p>e retirar extratos por periodos!</p>
             </TextB>
             <Footer />
         </Container>
     )
 }
-
+ //e criar alertas por email de contas a pagar!
 export default Home
 
 const Container = styled.div`

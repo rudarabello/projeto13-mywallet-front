@@ -37,7 +37,7 @@ const CategorysOut = () => {
     console.log(body)
     return (
         <Page>
-            <BackArrow onClick={() => navigate('/wallet')}>
+            <BackArrow onClick={() => navigate('/category')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>
@@ -81,8 +81,9 @@ justify-content: center;
 align-items: center;
 `;
 const Content = styled.div`
+margin-top: 80px;
 width: 70%;
-max-height: 600px;
+height: 100%;
 max-width: 260px;
 display: flex;
 flex-direction: column;
