@@ -1,15 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
-import { BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
+import React from 'react';
+import styled from 'styled-components';
+import Github from '../assets/1.png';
+import Link from '../assets/2.png';
+import Twitter from '../assets/3.png';
 
 
 function Footer() {
   return (
     <Container>
       <Contact>
-        <a href='https://github.com/rudarabello'><BsGithub /></a>
-        <a href='https://www.linkedin.com/in/ruda-rabello-da-silva/'><BsLinkedin /></a>
-        <a href='https://twitter.com/rudarabello'><BsTwitter /></a>
+        <a aria-label="Github" href="https://github.com/rudarabello" rel="noopener noreferrer">
+        <img alt="Github" src={Github}/></a>
+        <a aria-label="Github" href="https://www.linkedin.com/in/ruda-rabello-da-silva/" rel="noopener noreferrer">
+        <img alt="Github" src={Link}/></a>
+        <a aria-label="Github" href="https://twitter.com/rudarabello" rel="noopener noreferrer">
+        <img alt="Github" src={Twitter}/></a>
       </Contact>
       <CopyRights>
         <span>Develop by © Rudá Rabello. All Rights Reserved.</span>
