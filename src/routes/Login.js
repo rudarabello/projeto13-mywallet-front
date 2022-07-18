@@ -16,7 +16,7 @@ export default function Login() {
     const localUser = localStorage.getItem("user");
     const navigate = useNavigate()
     const { setData } = useContext(Context);
-    const URL = "https://back-project-mywallet-ruda.herokuapp.com/";
+    const URL = "https://back-project-mywallet-ruda.herokuapp.com/login";
     const tempAxiosFunction = useRef();
     const axiosFunction = () => {
         if (localUser !== null) {
@@ -41,7 +41,7 @@ export default function Login() {
             <Loading />
         } else {
             promise.then(response => GoTo(response.data));
-            promise.catch(error => alert(error.response.data.message));
+            promise.catch(error => alert(error.message));
         }
     }
     function GoTo(data) {
