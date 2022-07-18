@@ -5,7 +5,7 @@ import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import TransactionItem from "../components/TransactionItem";
+import CategoryItem from "../components/CategoryItem";
 
 
 export default function CategorysIn() {
@@ -27,7 +27,7 @@ export default function CategorysIn() {
         );
         promise.then(() => {
             alert("Registrado com sucesso!");
-            navigate("/wallet");
+            navigate("/category");
         });
         promise.catch((err) => {
             alert(err);
@@ -41,7 +41,10 @@ export default function CategorysIn() {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.get(ApiGet, config);
         promise.then(response => setCategorys(response.data));
-        promise.catch(err => {console.log(err)} );
+        promise.catch((err) => {
+            alert(err);
+            navigate("/");
+        });
     }
     tempAxiosFunction.current = axiosFunction;
     useEffect(() => {
@@ -58,7 +61,7 @@ export default function CategorysIn() {
                     <Description>
                         {categorys.length === 0 ? <Message>Não há registros categorias ainda!</Message>
                             : categorys.map((e, index) => {
-                                return (<TransactionItem key={index} date={e.date} description={e.description} />);
+                                return (<CategoryItem key={index} description={e.description} />);
                             })}
                     </Description>
                 </TransitionArea>
