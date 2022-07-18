@@ -42,14 +42,12 @@ export default function Wallet() {
     if (operations) {
       const values = operations.map(({ value }) => { return value });
       let balance = 0;
-      console.log(values)
       for (let j = 0; j < values.length; j++) {
         balance += values[j]
       }
       balance = balance.toFixed(2);
       balance = balance.toString().replace(".", ",");
       setTotal(balance);
-      console.log(balance)
     }
   }, [operations]);
   function logoutButton() {
@@ -62,7 +60,6 @@ export default function Wallet() {
     }
     ).catch(err => {
       alert(err)
-      console.log(err);
     })
   };
   setTimeout(() => setLoading(true), 1000);

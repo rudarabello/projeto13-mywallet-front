@@ -9,26 +9,23 @@ import CategoryItemSecondary from "../components/CategoryItemSecondary";
 
 
 const SubCategorysOut = () => {
+    const [subCategoryOut, setSubCategoryOutToAPI] = useState("");
+    const [categoryOutFromAPI, setCategoryOutFromAPI] = useState("");
+    const [categoryOutToAPI, setCategoryOutToAPI] = useState("");
     const navigate = useNavigate();
     const { data } = useContext(Context);
-    const [categoryOut, setCategoryOut] = useState("");
-    const [categoryOutAPI, setCategoryOutAPI] = useState("");
-    const [subCategoryOut, setSubCategoryOut] = useState("");
-    const APIGet = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
+    const [subCategorysFromAPI, setSubCategorysFromAPI] = useState("");
+    const APIGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
     const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
+    const APIGet2 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
     const body = {
-        categoryOut: categoryOut,
+        categoryOut: categoryOutToAPI,
         subCategoryOut: subCategoryOut
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const config = {
-            headers: {
-                Authorization: `Bearer ${data.token}`
-            }
-        };
-        const promise = axios.post(APIPost, body, config
-        );
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.post(APIPost, body, config);
         promise.then(() => {
             alert("Registrado com sucesso!");
             navigate("/category");
@@ -38,28 +35,11 @@ const SubCategorysOut = () => {
             navigate("/");
         });
     }
-    const tempAxiosFunction2 = useRef();
-    const axiosFunction2 = () => {
-        const config = { headers: { Authorization: `Bearer ${data.token}` } };
-        const promise = axios.get(APIGet, config);
-        promise.then(response => setCategoryOutAPI(response.data));
-        promise.catch((err) => {
-            alert(err);
-            navigate("/");
-        });
-    }
-    tempAxiosFunction2.current = axiosFunction2;
-    useEffect(() => {
-        tempAxiosFunction2.current();
-    }, [categoryOut]);
-
-
-    const [subCategorys, setSubCategorys] = useState("");
     const tempAxiosFunction = useRef();
     const axiosFunction = () => {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
-        const promise = axios.get(APIGet, config);
-        promise.then(response => setSubCategorys(response.data));
+        const promise = axios.get(APIGet2, config);
+        promise.then(response => setSubCategorysFromAPI(response.data));
         promise.catch((err) => {
             alert(err);
             navigate("/");
@@ -68,10 +48,29 @@ const SubCategorysOut = () => {
     tempAxiosFunction.current = axiosFunction;
     useEffect(() => {
         tempAxiosFunction.current();
-    }, [subCategorys]);
-
-
-
+    }, [subCategorysFromAPI]);
+    const tempAxiosFunction2 = useRef();
+    const axiosFunction2 = () => {
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.get(APIGet1, config);
+        promise.then(response => setCategoryOutFromAPI(response.data));
+        promise.catch((err) => {
+            alert(err);
+            navigate("/");
+        });
+    }
+    tempAxiosFunction2.current = axiosFunction2;
+    useEffect(() => {
+        tempAxiosFunction2.current();
+    }, [categoryOutFromAPI]);
+    const [isDisable, setIsDisable] = useState(true);
+    useEffect(() => {
+        if(subCategoryOut.length && categoryOutToAPI.length > 0 ) {
+            setIsDisable(false);
+        } else {
+            setIsDisable(true);
+        }
+    }, [subCategoryOut, categoryOutToAPI]);
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category/saida')}>
@@ -82,23 +81,23 @@ const SubCategorysOut = () => {
                 <h1>sub categorias</h1>
                 <TransitionArea>
                     <Description>
-                        <select onClick={(e) => setCategoryOut(e.target.value)}>
-                            {categoryOutAPI.length === 0 ? <Message>Não há registros categorias ainda!</Message> :
-                                categoryOutAPI.map((e) => {
-                                    return (
-                                        <option key={e._id} value={e.descriptionCategory}>{e.descriptionCategory}</option>)
-                                })}
-                        </select >
-                        {subCategorys.length === 0 ? <MessageSub>Não há registros de subcategorias ainda!</MessageSub>
-                            : subCategorys.map((e, index) => {
-                                return (<CategoryItemSecondary key={index} description={e.descriptionCategory} />);
+                        {subCategorysFromAPI.length === 0 ? <MessageSub>Não há registros de subcategorias ainda!</MessageSub>
+                            : subCategorysFromAPI.map((e, index) => {
+                                return (<CategoryItemSecondary key={index} category={e.categoryOut} subcategory={e.subCategoryOut} />);
                             })}
                     </Description>
                 </TransitionArea>
+                <select onClick={(e) => setCategoryOutToAPI(e.target.value)}>
+                    {categoryOutFromAPI.length === 0 ? <Message>Não há registros categorias ainda!</Message> :
+                        categoryOutFromAPI.map((e) => {
+                            return (
+                                <option key={e._id} value={e.descriptionCategory}>{e.descriptionCategory}</option>)
+                        })}
+                </select >
                 <form onSubmit={handleSubmit}>
                     <input type="text" max="14" required placeholder="Nova sub categoria" onChange={
-                        (e) => setSubCategoryOut(e.target.value)} />
-                    <button type="submit">Atualizar</button>
+                        (e) => setSubCategoryOutToAPI(e.target.value)} />
+                    <button disabled={isDisable} type="submit">Atualizar</button>
                 </form>
             </Content>
         </Page>
@@ -128,7 +127,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 15px;
 line-height: 23px;
-text-align: end;
+text-align: center;
 width: 100%;
 color: #868686;
 
@@ -138,15 +137,6 @@ const Description = styled.div`
 background: #FFFFFF;
 width: 100%;
 padding-top: 10px;
-select,input {
-    background-color: #ffffff;
-    color: #ADADAD;
-    border: none;
-    border-radius: 5px;
-    margin-top: 18px;
-    width: 100%;
-    height: 40px;
-}
 `;
 
 const TransitionArea = styled.div`
@@ -205,8 +195,9 @@ select, input{
     border-radius: 5px;
     margin-top: 18px;
     width: 100%;
-    height: 40px;
+    min-height: 40px;
 }
+
 h1{
     width: 100%;
     text-align: center;

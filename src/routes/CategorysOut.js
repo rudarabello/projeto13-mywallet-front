@@ -18,13 +18,8 @@ const CategorysOut = () => {
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const config = {
-            headers: {
-                Authorization: `Bearer ${data.token}`
-            }
-        };
-        const promise = axios.post(APIPost, body, config
-        );
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.post(APIPost, body, config);
         promise.then(() => {
             alert("Registrado com sucesso!");
             navigate("/category");
@@ -50,7 +45,6 @@ const CategorysOut = () => {
     useEffect(() => {
         tempAxiosFunction.current();
     }, []);
-    console.log(categorys)
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category')}>
