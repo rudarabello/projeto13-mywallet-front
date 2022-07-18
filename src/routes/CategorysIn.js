@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useRef, useEffect} from "react";
+import { useContext, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
@@ -8,11 +8,11 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 import TransactionItem from "../components/TransactionItem";
 
 
-const CategorysIn = () => {
+export default function CategorysIn() {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [description, setDescription] = useState("");
-    const APIPOST = "https://back-project-mywallet-ruda.herokuapp.com/chart-in";
+    const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/chart-in";
     const body = {
         description: description
     };
@@ -23,7 +23,7 @@ const CategorysIn = () => {
                 Authorization: `Bearer ${data.token}`
             }
         };
-        const promise = axios.post(APIPOST, body, config
+        const promise = axios.post(APIPost, body, config
         );
         promise.then(() => {
             alert("Registrado com sucesso!");
@@ -34,25 +34,19 @@ const CategorysIn = () => {
             navigate("/");
         });
     }
+    const [categorys, setCategorys] = useState("");
     const tempAxiosFunction = useRef();
     const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/chart-in`;
-    const [categorys, setCategorys] = useState();
     const axiosFunction = () => {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.get(ApiGet, config);
         promise.then(response => setCategorys(response.data));
-        promise.catch(() => {
-            alert("Por favor faça o login!");
-            navigate("/");
-        }
-        )
+        promise.catch(err => {console.log(err)} );
     }
     tempAxiosFunction.current = axiosFunction;
-
     useEffect(() => {
         tempAxiosFunction.current();
     }, []);
-
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category')}>
@@ -62,11 +56,9 @@ const CategorysIn = () => {
                 <h1>Suas categorias</h1>
                 <TransitionArea>
                     <Description>
-                        {categorys.length === 0 ? <Message>Não há registros de entrada ou saída</Message>
+                        {categorys.length === 0 ? <Message>Não há registros categorias ainda!</Message>
                             : categorys.map((e, index) => {
-                                return (
-                                    <TransactionItem
-                                        key={index} date={e.date} description={e.description} />);
+                                return (<TransactionItem key={index} date={e.date} description={e.description} />);
                             })}
                     </Description>
                 </TransitionArea>
@@ -80,7 +72,6 @@ const CategorysIn = () => {
     );
 };
 
-export default CategorysIn
 const Message = styled.div`
 display: flex;
 flex-direction: column;
@@ -90,9 +81,9 @@ font-weight: 400;
 font-size: 20px;
 line-height: 23px;
 text-align: center;
-width: 180px;
+width: 100%;
 color: #868686;
-margin-left: 70px;
+
 `;
 
 const Description = styled.div`

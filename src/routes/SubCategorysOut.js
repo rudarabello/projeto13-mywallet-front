@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
+import TransactionItem from "../components/TransactionItem";
 
 
 const SubCategorysOut = () => {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [description, setDescription] = useState("");
-    const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    const APIGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
+    const APIGet2 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
+    const APIPost = "";
     const body = {
         description: description
     };
@@ -22,8 +25,8 @@ const SubCategorysOut = () => {
                 Authorization: `Bearer ${data.token}`
             }
         };
-        
-        const promise = axios.post(API, body, config
+
+        const promise = axios.post(APIPost, body, config
         );
         promise.then(() => {
             alert("Registrado com sucesso!");
@@ -34,7 +37,19 @@ const SubCategorysOut = () => {
             navigate("/");
         });
     }
-    console.log(body)
+    const [categorys, setCategorys] = useState("");
+    const tempAxiosFunction = useRef();
+    const ApiGet = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
+    const axiosFunction = () => {
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.get(ApiGet, config);
+        promise.then(response => setCategorys(response.data));
+        promise.catch(err => { console.log(err) });
+    }
+    tempAxiosFunction.current = axiosFunction;
+    useEffect(() => {
+        tempAxiosFunction.current();
+    }, [categorys]);
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category/saida')}>
@@ -43,6 +58,12 @@ const SubCategorysOut = () => {
             <Content>
                 <h1>Suas sub categorias</h1>
                 <TransitionArea>
+                    <Description>
+                        {categorys.length === 0 ? <Message>Não há registros categorias ainda!</Message>
+                            : categorys.map((e, index) => {
+                                return (<TransactionItem key={index} description={e.description} />);
+                            })}
+                    </Description>
                 </TransitionArea>
                 <form onSubmit={handleSubmit}>
                     <input type="text" max="14" required placeholder="Nova sub categoria" onChange={
@@ -55,6 +76,26 @@ const SubCategorysOut = () => {
 };
 
 export default SubCategorysOut
+
+const Message = styled.div`
+display: flex;
+flex-direction: column;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 23px;
+text-align: center;
+width: 100%;
+color: #868686;
+
+`;
+
+const Description = styled.div`
+background: #FFFFFF;
+width: 100%;
+padding-top: 10px;
+`;
 
 const TransitionArea = styled.div`
 background-color: #FFFFFF;
