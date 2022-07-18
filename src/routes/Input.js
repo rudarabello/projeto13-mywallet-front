@@ -1,38 +1,45 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
-
-
-
 export default function UsersPage() {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [value, setValue] = useState("");
-    const [category, setCategory] = useState("");
+    const [categoryToApi, setCategoryToApi] = useState("");
     const [description, setDescription] = useState("");
-    const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    const [categorysFromApi, setCategorysFromApi] = useState([]);
+    const tempAxiosFunction = useRef();
+    const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/chart-in`;
+    const axiosFunction = () => {
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.get(ApiGet, config);
+        promise.then(response => setCategorysFromApi(response.data));
+        promise.catch((err) => {
+            alert(err);
+            navigate("/");
+        });
+    }
+    tempAxiosFunction.current = axiosFunction;
+    useEffect(() => {
+        tempAxiosFunction.current();
+    }, [categorysFromApi]);
     const body = {
         type: "input",
         value: value * 1,
         description: description,
-        category: category,
+        category: categoryToApi,
         subCategory: "input"
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const config = {
-            headers: {
-                Authorization: `Bearer ${data.token}`
-            }
-        };
-        
-        const promise = axios.post(API, body, config
-        );
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.post(APIPost, body, config);
         promise.then(() => {
             alert("Registrado com sucesso!");
             navigate("/wallet");
@@ -42,7 +49,7 @@ export default function UsersPage() {
             navigate("/");
         });
     }
-    console.log(body)
+  
     return (
         <Page>
             <BackArrow onClick={() => navigate('/wallet')}>
@@ -55,14 +62,12 @@ export default function UsersPage() {
                         (e) => setValue(e.target.value)} />
                     <input type="text" max="14" required placeholder="Descrição" onChange={
                         (e) => setDescription(e.target.value)} />
-                    <select onClick={(e) => setCategory(e.target.value)}>
-                        <option value="">Escolha a categoria</option>
-                        <option value="Salário líquido">Salário líquido</option>
-                        <option value="Adiantamento">Adiantamento</option>
-                        <option value="Ticket">Ticket</option>
-                        <option value="Rendimento Nuconta">Rendimento Nuconta</option>
-                        <option value="Retirada da poupança">Retirada da poupança</option>
-                    </select>
+                    <select onClick={(e) => setCategoryToApi(e.target.value)}>
+                        {categorysFromApi.map((e) => {
+                            return (
+                                <option key={e.id} value={e.description}>{e.description}</option>)
+                        })}
+                    </select >
                     <button type="submit">Salvar Entrada</button>
                 </form>
             </Content>
