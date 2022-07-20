@@ -5,9 +5,6 @@ import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import RenderCategory from "../components/RenderCategory";
-import RenderSubCategory from "../components/RenderSubCategory";
-
 
 const SubCategorysOut = () => {
     const [subCategoryOut, setSubCategoryOutToAPI] = useState("");
@@ -23,9 +20,6 @@ const SubCategorysOut = () => {
         categoryOut: categoryOutToAPI,
         subCategoryOut: subCategoryOut
     };
-    const bodyToGet = {
-
-    }
     function handleSubmit(e) {
         e.preventDefault();
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
@@ -81,7 +75,8 @@ const SubCategorysOut = () => {
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>
-                <h1>Suas sub-categorias</h1>
+                <h1>Suas categorias e</h1>
+                <h1>sub-categorias</h1>
                 <TransitionArea>
                     <Description>
                         {subCategorysFromAPI.length === 0 ?
@@ -91,7 +86,9 @@ const SubCategorysOut = () => {
                                     e.map((i, index) => {
                                         return (
                                             <>
-                                                <div key={index}>{i.subCategoryOut}</div></>
+                                                <Category key={index}>{i.descriptionCategory}</Category>
+                                                <SubCategory key={index + 1}>{i.subCategoryOut}</SubCategory>
+                                            </>
                                         )
                                     }))
                             })}
@@ -117,6 +114,23 @@ const SubCategorysOut = () => {
 
 export default SubCategorysOut
 
+const Category = styled.div`
+font-family: 'Raleway';
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+padding-left: 10px;
+color: #000000;
+`;
+const SubCategory = styled.div`
+font-family: 'Raleway';
+font-weight: 400;
+font-size: 16px;
+line-height: 23px;
+padding-left: 35px;
+color: #000000;
+`;
+
 const MessageSub = styled.div`
 display: flex;
 flex-direction: column;
@@ -128,7 +142,6 @@ line-height: 23px;
 text-align: center;
 width: 100%;
 color: #868686;
-
 `;
 
 const Description = styled.div`
