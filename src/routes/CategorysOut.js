@@ -29,7 +29,7 @@ const CategorysOut = () => {
             navigate("/");
         });
     }
-    const [categorys, setCategorys] = useState("");
+    const [categorys, setCategorys] = useState([]);
     const tempAxiosFunction = useRef();
     const ApiGet = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
     const axiosFunction = () => {
@@ -44,7 +44,7 @@ const CategorysOut = () => {
     tempAxiosFunction.current = axiosFunction;
     useEffect(() => {
         tempAxiosFunction.current();
-    }, []);
+    }, [categorys]);
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category')}>

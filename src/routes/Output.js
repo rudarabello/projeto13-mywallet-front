@@ -1,23 +1,37 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
-
-
-
 export default function Output() {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
-    const API = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
+    const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
     const [category, setCategory] = useState();
     const [subCategory, setSubCategory] = useState();
-    const [renderS, setRenderS] = useState([]);
+    const [categorysFromApi, setCategorysFromApi] = useState([]);
+    const tempAxiosFunction = useRef();
+    const ApiGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
+    const APIGet2 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
+    const [subCategorysFromAPI, setSubCategorysFromAPI] = useState([]);
+    const axiosFunction = () => {
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.get(ApiGet1, config);
+        promise.then(response => setCategorysFromApi(response.data));
+        promise.catch((err) => {
+            alert(err);
+            navigate("/");
+        });
+    }
+    tempAxiosFunction.current = axiosFunction;
+    useEffect(() => {
+        tempAxiosFunction.current();
+    }, [categorysFromApi]);
     const body = {
         type: "output",
         value: value * -1,
@@ -27,13 +41,8 @@ export default function Output() {
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const config = {
-            headers: {
-                Authorization: `Bearer ${data.token}`
-            }
-        };
-        const promise = axios.post(API, body, config
-        );
+        const config = {headers: { Authorization: `Bearer ${data.token}` }};
+        const promise = axios.post(APIPost, body, config);
         promise.then(() => {
             alert("Registrado com sucesso!");
             navigate("/wallet");
@@ -43,52 +52,15 @@ export default function Output() {
             navigate("/");
         });
     };
-    const categoryFromAPI = [
-        { id: 0, text: 'Escolha categoria' },
-        { id: 1, text: 'Básico' },
-        { id: 2, text: 'Saúde' },
-        { id: 3, text: 'Estudos' },
-        { id: 4, text: 'Automóvel' },
-        { id: 5, text: 'Extras' },
-        { id: 6, text: 'Serviços' },
-        { id: 7, text: 'Dízimos/Ofertas' }
-    ];
-    const basico = [
-        { id: 0, text: 'Escolha sub-categoria' },
-        { id: 1, text: 'Alimentação' },
-        { id: 2, text: 'Impostos' },
-        { id: 3, text: 'CRQ' },
-        { id: 4, text: 'Aluguel' },
-        { id: 5, text: 'Energia elétrica' },
-        { id: 6, text: 'Condomínio' },
-        { id: 7, text: 'Celular' },
-        { id: 8, text: 'Internet' },
-        { id: 9, text: 'Manutenção' },
-        { id: 10, text: 'Vestuário' },
-        { id: 11, text: 'Cama/mesa/banho' },
-        { id: 12, text: 'Cabeleireiro/Manicure' },
-        { id: 13, text: 'Ajuste' },
-        { id: 15, text: 'Poupança' },
-    ]
-    const saude = [
-        { id: 0, text: 'Escolha sub-categoria' },
-        { id: 1, text: 'Equipamentos' },
-        { id: 2, text: 'Cosm/Perf/Drog' },
-        { id: 3, text: 'Suplementos' },
-        { id: 4, text: 'Bicicleta' },
-        { id: 5, text: 'Academia' },
-        { id: 6, text: 'Dentista' },
-        { id: 7, text: 'Medicamentos' }
-    ];
     useEffect(() => {
-        if (category === 'Básico') {
-            setRenderS(basico)
-        }
-        if (category === 'Saúde') {
-            setRenderS(saude)
-        }
-    }, [category]);
-    console.log(body)
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
+        const promise = axios.get(APIGet2, config);
+        promise.then(response => setSubCategorysFromAPI(response.data));
+        promise.catch((err) => {
+            alert(err);
+            navigate("/wallet");
+        });
+    }, [category]);    
     return (
         <Page>
             <BackArrow onClick={() => navigate('/wallet')}>
@@ -100,15 +72,15 @@ export default function Output() {
                     <input type="number" step=".01" required placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
                     <input type="text" max="14" required placeholder="Descrição" onChange={(e) => setDescription(e.target.value)} />
                     <select onClick={(e) => setCategory(e.target.value)}>
-                        {categoryFromAPI.map((category) => {
+                        {categorysFromApi.map((e) => {
                             return (
-                                <option key={category.id} value={category.text}>{category.text}</option>)
+                                <option key={e._id} value={e.descriptionCategory}>{e.descriptionCategory}</option>)
                         })}
                     </select >
                     <select onClick={(e) => setSubCategory(e.target.value)}>
-                        {renderS.map((category) => {
+                        {subCategorysFromAPI.map((e) => {
                             return (
-                                <option key={category.id} value={category.text}>{category.text}</option>)
+                                <option key={e.id} value={e.subCategoryOut}>{e.subCategoryOut}</option>)
                         })}
                     </select>
                     <button type="submit">Salvar Saída</button>

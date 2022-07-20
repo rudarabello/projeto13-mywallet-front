@@ -5,16 +5,17 @@ import Context from "../contexts/Context";
 import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import CategoryItemSecondary from "../components/CategoryItemSecondary";
+import RenderCategory from "../components/RenderCategory";
+import RenderSubCategory from "../components/RenderSubCategory";
 
 
 const SubCategorysOut = () => {
     const [subCategoryOut, setSubCategoryOutToAPI] = useState("");
-    const [categoryOutFromAPI, setCategoryOutFromAPI] = useState("");
+    const [categoryOutFromAPI, setCategoryOutFromAPI] = useState([]);
     const [categoryOutToAPI, setCategoryOutToAPI] = useState("");
     const navigate = useNavigate();
     const { data } = useContext(Context);
-    const [subCategorysFromAPI, setSubCategorysFromAPI] = useState("");
+    const [subCategorysFromAPI, setSubCategorysFromAPI] = useState([]);
     const APIGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
     const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
     const APIGet2 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
@@ -22,6 +23,9 @@ const SubCategorysOut = () => {
         categoryOut: categoryOutToAPI,
         subCategoryOut: subCategoryOut
     };
+    const bodyToGet = {
+
+    }
     function handleSubmit(e) {
         e.preventDefault();
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
@@ -65,7 +69,7 @@ const SubCategorysOut = () => {
     }, [categoryOutFromAPI]);
     const [isDisable, setIsDisable] = useState(true);
     useEffect(() => {
-        if(subCategoryOut.length && categoryOutToAPI.length > 0 ) {
+        if (subCategoryOut.length && categoryOutToAPI.length > 0) {
             setIsDisable(false);
         } else {
             setIsDisable(true);
@@ -77,22 +81,29 @@ const SubCategorysOut = () => {
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>
-                <h1>Suas categorias e</h1>
-                <h1>sub categorias</h1>
+                <h1>Suas sub-categorias</h1>
                 <TransitionArea>
                     <Description>
-                        {subCategorysFromAPI.length === 0 ? <MessageSub>Não há registros de subcategorias ainda!</MessageSub>
-                            : subCategorysFromAPI.map((e, index) => {
-                                return (<CategoryItemSecondary key={index} category={e.categoryOut} subcategory={e.subCategoryOut} />);
+                        {subCategorysFromAPI.length === 0 ?
+                            <MessageSub>Não há registros de subcategorias ainda!</MessageSub>
+                            : subCategorysFromAPI.map((e) => {
+                                return (
+                                    e.map((i, index) => {
+                                        return (
+                                            <>
+                                                <div key={index}>{i.subCategoryOut}</div></>
+                                        )
+                                    }))
                             })}
                     </Description>
                 </TransitionArea>
                 <select onClick={(e) => setCategoryOutToAPI(e.target.value)}>
-                    {categoryOutFromAPI.length === 0 ? <Message>Não há registros categorias ainda!</Message> :
-                        categoryOutFromAPI.map((e) => {
-                            return (
-                                <option key={e._id} value={e.descriptionCategory}>{e.descriptionCategory}</option>)
-                        })}
+                    {categoryOutFromAPI.map((e) => {
+                        return (
+                            <option key={e._id} value={e.descriptionCategory}>
+                                {e.descriptionCategory}
+                            </option>)
+                    })}
                 </select >
                 <form onSubmit={handleSubmit}>
                     <input type="text" max="14" required placeholder="Nova sub categoria" onChange={
@@ -106,19 +117,6 @@ const SubCategorysOut = () => {
 
 export default SubCategorysOut
 
-const Message = styled.div`
-display: flex;
-flex-direction: column;
-font-family: 'Raleway';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 23px;
-text-align: center;
-width: 100%;
-color: #868686;
-
-`;
 const MessageSub = styled.div`
 display: flex;
 flex-direction: column;
@@ -137,6 +135,7 @@ const Description = styled.div`
 background: #FFFFFF;
 width: 100%;
 padding-top: 10px;
+overflow-x: hidden;
 `;
 
 const TransitionArea = styled.div`

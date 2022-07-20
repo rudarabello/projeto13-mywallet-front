@@ -17,7 +17,7 @@ import { AiOutlineUnorderedList } from 'react-icons/ai';
 export default function Wallet() {
   const { data } = useContext(Context);
   const [loading, setLoading] = useState(false);
-  const [operations, setOperations] = useState();
+  const [operations, setOperations] = useState([]);
   const [total, setTotal] = useState();
   const navigate = useNavigate();
   const tempAxiosFunction = useRef();
