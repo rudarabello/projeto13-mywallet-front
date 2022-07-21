@@ -97,7 +97,8 @@ const SubCategorysOut = () => {
                 <select onClick={(e) => setCategoryOutToAPI(e.target.value)}>
                     {categoryOutFromAPI.map((e) => {
                         return (
-                            <option key={e._id} value={e.descriptionCategory}>
+                            <option
+                                key={e._id} value={e.descriptionCategory}>
                                 {e.descriptionCategory}
                             </option>)
                     })}
