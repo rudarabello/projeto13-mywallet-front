@@ -12,13 +12,14 @@ export default function Output() {
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
     const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
-    const [category, setCategory] = useState();
-    const [subCategory, setSubCategory] = useState();
+    const [category, setCategory] = useState([]);
+    const [subCategory, setSubCategory] = useState([]);
     const [categorysFromApi, setCategorysFromApi] = useState([]);
     const tempAxiosFunction = useRef();
     const ApiGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
     const APIGet2 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
     const [subCategorysFromAPI, setSubCategorysFromAPI] = useState([]);
+    const [subCategorysRender, setSubCategorysRender] = useState([]);
     const axiosFunction = () => {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.get(ApiGet1, config);
@@ -41,7 +42,7 @@ export default function Output() {
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const config = {headers: { Authorization: `Bearer ${data.token}` }};
+        const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.post(APIPost, body, config);
         promise.then(() => {
             alert("Registrado com sucesso!");
@@ -55,12 +56,22 @@ export default function Output() {
     useEffect(() => {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.get(APIGet2, config);
-        promise.then(response => setSubCategorysFromAPI(response.data));
-        promise.catch((err) => {
-            alert(err);
-            navigate("/wallet");
-        });
-    }, [category]);    
+        promise.then(response => Goto(response.data));
+        promise.catch((err) => { alert(err); navigate("/wallet"); });
+    }, [category]);
+    function Goto(data) {
+        setSubCategorysFromAPI(data);
+        for (let index = 0; index < subCategorysFromAPI.length; index++) {
+            const element = subCategorysFromAPI[index];
+            for (let index = 0; index < element.length; index++) {
+                const subElement = element[index];
+                const { descriptionCategory } = subElement;
+                if (descriptionCategory === category) {
+                    setSubCategorysRender(element);
+                }
+            }
+        }
+    }
     return (
         <Page>
             <BackArrow onClick={() => navigate('/wallet')}>
@@ -74,11 +85,13 @@ export default function Output() {
                     <select onClick={(e) => setCategory(e.target.value)}>
                         {categorysFromApi.map((e) => {
                             return (
-                                <option key={e._id} value={e.descriptionCategory}>{e.descriptionCategory}</option>)
+                                <option
+                                    key={e._id} value={e.descriptionCategory}>{e.descriptionCategory}
+                                </option>)
                         })}
                     </select >
                     <select onClick={(e) => setSubCategory(e.target.value)}>
-                        {subCategorysFromAPI.map((e) => {
+                        {subCategorysRender.map((e) => {
                             return (
                                 <option key={e.id} value={e.subCategoryOut}>{e.subCategoryOut}</option>)
                         })}
