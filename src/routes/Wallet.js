@@ -100,7 +100,7 @@ export default function Wallet() {
               <button>
                 <span>Extratos</span><Icon><TiDocumentText fontSize="1.5em" /></Icon>
               </button>
-              <button>
+              <button onClick={() => navigate("/chart")}>
                 <span>Gráficos</span><Icon><VscPieChart fontSize="1.5em" /></Icon>
               </button>
               <button onClick={() => navigate("/category")}>

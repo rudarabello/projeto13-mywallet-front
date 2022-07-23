@@ -6,7 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { IoMdArrowRoundBack } from 'react-icons/io';
 
-export default function UsersPage() {
+export default function Input() {
     const navigate = useNavigate();
     const { data } = useContext(Context);
     const [value, setValue] = useState("");
@@ -49,7 +49,6 @@ export default function UsersPage() {
             navigate("/");
         });
     }
-  
     return (
         <Page>
             <BackArrow onClick={() => navigate('/wallet')}>
@@ -65,7 +64,7 @@ export default function UsersPage() {
                     <select onClick={(e) => setCategoryToApi(e.target.value)}>
                         {categorysFromApi.map((e) => {
                             return (
-                                <option key={e.id} value={e.description}>{e.description}</option>)
+                                <option key={e.description} value={e.description}>{e.description}</option>)
                         })}
                     </select >
                     <button type="submit">Salvar Entrada</button>

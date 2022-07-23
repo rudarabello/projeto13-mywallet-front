@@ -13,6 +13,7 @@ import Categorys from "./routes/Categorys";
 import CategorysIn from "./routes/CategorysIn";
 import CategorysOut from "./routes/CategorysOut";
 import SubCategorysOut from "./routes/SubCategorysOut";
+import PieChart from "./routes/PieChart";
 
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
                     <Route path="/category/entrada" element={<CategorysIn />} />
                     <Route path="/category/saida" element={<CategorysOut />} />
                     <Route path="/category/saida/subcategoria" element={<SubCategorysOut />} />
+                    <Route path="/chart" element={<PieChart />} />
                 </Routes>
             </BrowserRouter>
         </Context.Provider>
