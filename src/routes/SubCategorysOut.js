@@ -68,6 +68,10 @@ const SubCategorysOut = () => {
         } else {
             setIsDisable(true);
         }
+        console.log(subCategorysFromAPI)
+        console.log(subCategorysFromAPI)
+        console.log(subCategorysFromAPI)
+        console.log(subCategorysFromAPI)
     }, [subCategoryOut, categoryOutToAPI]);
     return (
         <Page>

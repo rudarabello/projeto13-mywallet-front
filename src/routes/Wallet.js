@@ -63,6 +63,7 @@ export default function Wallet() {
     })
   };
   setTimeout(() => setLoading(true), 1000);
+  
   return (
     <Page>
       {loading === true ?
