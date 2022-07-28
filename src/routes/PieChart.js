@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Context from "../contexts/Context"
 import ChartTest from "../components/PieChartCategories.tsx";
 import { IoMdArrowRoundBack } from 'react-icons/io';
-import { setup, dataChart } from '../components/ConstantsToChart';
+import { setup } from '../components/ConstantsToChart';
 
 export default function PieChart() {
   const navigate = useNavigate();
@@ -13,33 +13,81 @@ export default function PieChart() {
   const [operations, setOperations] = useState([]);
   const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
   const config = { headers: { Authorization: `Bearer ${data.token}` } };
-  const dataInput = []
+  const interOut = [];
+  const interIn = [];
+  const dataInput = {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: [],
+      borderColor: [],
+      borderWidth: 1,
+    },
+    ],
+  };
+  const dataOutput = {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: [],
+      borderColor: [],
+      borderWidth: 1,
+    },
+    ],
+  };
   useEffect(() => {
     const promise = axios.get(ApiGet, config);
     promise.then(response =>
-      setOperations(response.data)
+      setOperations(response.data),
     )
-      .catch(() => {
-        alert("Por favor faça o login!");
-        navigate("/");
-      })
+    //.catch(() => {
+    //alert("Por favor faça o login!");
+    //navigate("/");
+    // })
   }, []);
-  console.log(operations)
-  useEffect(() => {
-    {
-      operations.map((e) => {
-        if (e.type === "input") {
-          let labels = {labels:e.category};
-          let data = {data:e.value};
-          dataInput.push([labels, data]);
-        } else {
-          let dataOutput = [e.category,e.value]
-        }
-      })
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
     }
-    
-  }, [])
-  console.log(dataInput)
+    return color;
+  }
+  for (let index = 0; index < operations.length; index++) {
+    const e = operations[index];
+    console.log(e)
+    if (e.type !== "output") {
+      interIn.push([{
+        label: e.category,
+        value: e.value
+      }]);
+    } else {
+      interOut.push([{
+        label: e.category,
+        subLabel: e.subCategory,
+        value: e.value
+      }]);
+    }
+  };
+  operations && operations.map((e) => {
+    if (e.type == "input") {
+      let label = e.category;
+      let valor = e.value;
+      dataInput.labels.push(label);
+      dataInput.datasets[0].data.push(valor);
+      dataInput.datasets[0].backgroundColor.push(getRandomColor());
+      dataInput.datasets[0].borderColor.push('#8C11BE');
+    } else {
+      let label = e.category;
+      let valor = e.value * -1;
+      interOut.push(label, valor);
+      dataOutput.labels.push(label);
+      dataOutput.datasets[0].data.push(valor);
+      dataOutput.datasets[0].backgroundColor.push(getRandomColor());
+      dataOutput.datasets[0].borderColor.push('#8C11BE');
+    }
+  });
+  console.log(operations, interOut, interIn)
   return (
     <Page>
       <Content>
@@ -47,7 +95,8 @@ export default function PieChart() {
           <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
         </BackArrow>
         <ChartContent>
-          <ChartTest chartData={dataChart} options={setup} />
+          <ChartTest chartData={dataInput} options={setup} />
+          <ChartTest chartData={dataOutput} options={setup} />
         </ChartContent>
       </Content>
     </Page>
