@@ -63,14 +63,15 @@ export default function Wallet() {
     })
   };
   setTimeout(() => setLoading(true), 1000);
-  
+
   return (
     <Page>
       {loading === true ?
-        <><LogOut onClick={() => logoutButton()}>
-          <IoIosLogOut color={'#ffffff'} fontSize="2.5em" />
-        </LogOut>
+        <>
           <Content>
+            <LogOut onClick={() => logoutButton()}>
+              <IoIosLogOut color={'#ffffff'} fontSize="2.5em" />
+            </LogOut>
             <Header>
               <h1>Olá, {data.name}</h1>
             </Header>
@@ -98,7 +99,7 @@ export default function Wallet() {
               <button onClick={() => navigate("/output")}>
                 <span>Nova Saída</span><Icon><AiOutlineMinusCircle fontSize="1.5em" /></Icon>
               </button>
-              <button>
+              <button onClick={() => navigate("/extract")}>
                 <span>Extratos</span><Icon><TiDocumentText fontSize="1.5em" /></Icon>
               </button>
               <button onClick={() => navigate("/chart")}>
@@ -130,7 +131,6 @@ const LogOut = styled.div`
     text-align: end;
     width: 100% ;
     top: 20px;
-    padding-right: 28px;
     font-size: 15px;
 `;
 const Content = styled.div`

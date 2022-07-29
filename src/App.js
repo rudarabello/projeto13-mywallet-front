@@ -14,6 +14,7 @@ import CategorysIn from "./routes/CategorysIn";
 import CategorysOut from "./routes/CategorysOut";
 import SubCategorysOut from "./routes/SubCategorysOut";
 import PieChart from "./routes/PieChart";
+import Extract from "./routes/Extract";
 
 
 export default function App() {
@@ -29,12 +30,14 @@ export default function App() {
                     <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/wallet" element={<Wallet />} />
                     <Route path="/input" element={<Input />} />
-                    <Route path="/output" element={<Output />} />
-                    <Route path="/category" element={<Categorys />} />
-                    <Route path="/category/entrada" element={<CategorysIn />} />
-                    <Route path="/category/saida" element={<CategorysOut />} />
-                    <Route path="/category/saida/subcategoria" element={<SubCategorysOut />} />
                     <Route path="/chart" element={<PieChart />} />
+                    <Route path="/output" element={<Output />} />
+                    <Route path="/extract" element={<Extract />} />
+                    <Route path="/category" element={<Categorys />} />
+                    <Route path="/category/input" element={<CategorysIn />} />
+                    <Route path="/category/output" element={<CategorysOut />} />
+                    <Route path="/category/output/subcategory" element={<SubCategorysOut />} />
+                    
                 </Routes>
             </BrowserRouter>
         </Context.Provider>

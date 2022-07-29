@@ -52,10 +52,10 @@ export default function CategorysIn() {
     }, []);
     return (
         <Page>
-            <BackArrow onClick={() => navigate('/category')}>
-                <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
-            </BackArrow>
             <Content>
+                <BackArrow onClick={() => navigate('/category')}>
+                    <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
+                </BackArrow>
                 <h1>Suas categorias</h1>
                 <TransitionArea>
                     <Description>

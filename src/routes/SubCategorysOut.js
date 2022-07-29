@@ -75,7 +75,7 @@ const SubCategorysOut = () => {
     }, [subCategoryOut, categoryOutToAPI]);
     return (
         <Page>
-            <BackArrow onClick={() => navigate('/category/saida')}>
+            <BackArrow onClick={() => navigate('/category/output')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>

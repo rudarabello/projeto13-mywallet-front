@@ -121,7 +121,7 @@ export default function PieChart() {
   );
 }
 const ChartContent = styled.div`
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 20px;
     
 `;
@@ -153,7 +153,6 @@ const Content = styled.div`
     font-size: 26px;
     line-height: 31px;
     margin-top: 60px;
-    
 }
 `;
 const BackArrow = styled.div`

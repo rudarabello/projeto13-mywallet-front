@@ -36,7 +36,7 @@ const Container = styled.div`
 const TextA = styled.div`
     z-index: 1;
     max-width: 330px;
-    margin-top: 120px;
+    margin-top: 10px;
     font-weight: 900;
     font-size: 25px;
     padding-left: 5px;

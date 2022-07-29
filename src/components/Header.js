@@ -26,7 +26,6 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     background-color: #A328D6;
-    position: fixed;
     top: 0;
     button{
     min-width: 110px;

@@ -11,8 +11,8 @@ const Categorys = () => {
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
             <Content>
-            <button onClick={() => navigate('/category/entrada')}>Categorias de Entrada</button>
-            <button onClick={() => navigate('/category/saida')}>Categorias de Saída</button>
+            <button onClick={() => navigate('/category/input')}>Categorias de Entrada</button>
+            <button onClick={() => navigate('/category/output')}>Categorias de Saída</button>
             </Content>
         </Page>
     );

@@ -64,7 +64,7 @@ const CategorysOut = () => {
                     <input type="text" max="14" required placeholder="Nova categoria" onChange={
                         (e) => setDescription(e.target.value)} />
                     <button type="submit">Atualizar</button>
-                    <button onClick={() => navigate('/category/saida/subcategoria')}>Sub Categorias</button>
+                    <button onClick={() => navigate('/category/output/subcategory')}>Sub Categorias</button>
                 </form>
             </Content>
         </Page>
