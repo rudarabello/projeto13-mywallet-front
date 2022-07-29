@@ -111,13 +111,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 100vh;
+min-height: 850px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
 const Content = styled.div`
-margin-top: 80px;
+margin-top: 50px;
 width: 70%;
 height: 100%;
 max-width: 260px;
@@ -165,7 +166,7 @@ h1{
 };
 `;
 const BackArrow = styled.div`
-    position: fixed;
+    position: relative;
     top: 20px;
-    left: 38px;
+    left: -35%;
 `;
