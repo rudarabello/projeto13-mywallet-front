@@ -13,9 +13,16 @@ export default function Extract() {
     const { data } = useContext(Context);
     const [operations, setOperations] = useState([]);
     const [total, setTotal] = useState();
+    const [initil, setInitial] = useState("");
+    const [final, setFinal] = useState("");
     const navigate = useNavigate();
     const tempAxiosFunction = useRef();
     const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
+    const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/extract";
+    const body = {
+        initial: initil,
+        final: final
+    };
     const axiosFunction = () => {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.get(ApiGet, config);
@@ -42,6 +49,24 @@ export default function Extract() {
             setTotal(balance);
         }
     }, [operations]);
+    function handleSubmit(e) {
+        e.preventDefault();
+        const config = {
+            headers: {
+                Authorization: `Bearer ${data.token}`
+            }
+        };
+        const promise = axios.post(APIPost, body, config
+        );
+        promise.then(() => {
+            alert("Registrado com sucesso!");
+            navigate("/category");
+        });
+        promise.catch((err) => {
+            alert(err);
+            navigate("/");
+        });
+    }
     return (
         <Page>
             <Content>
@@ -62,15 +87,46 @@ export default function Extract() {
                             })}
                     </Description>
                 </TransationArea>
-                <Buttons>
-                    <button>
-                        <span>Atualizar</span>
-                    </button>
-                </Buttons>
+                <form onSubmit={handleSubmit}>
+                    <Inputs>
+                        <SubInput>
+                            <label for="name">Data inicial</label>
+                            <input type="date" max="14" required onChange={
+                                (e) => setInitial(e.target.value)} />
+                        </SubInput>
+                        <SubInput>
+                            <label for="name">Data final</label>
+                            <input type="date" max="14" required onChange={
+                                (e) => setFinal(e.target.value)} />
+                        </SubInput>
+                    </Inputs>
+                    <button type="submit">Atualizar</button>
+                </form>
             </Content>
         </Page>
     );
 };
+
+const SubInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    label{
+        margin-top: 10px;
+        width: 100%;
+    text-align: center;
+    color: white;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 31px;
+    }
+`;
+const Inputs = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+`;
 
 const Page = styled.div`
 background: #8C11BE;
@@ -85,12 +141,39 @@ justify-content: center;
 align-items: center;
 `;
 
+
 const Content = styled.div`
-width: 80%;
+width: 70%;
 max-width: 300px;
 display: flex;
 flex-direction: column;
 align-items: center;
+button{
+    width: 100%;
+    height: 114px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: #A328D6;
+    border: thin solid #A328D6;
+    color: #ffffff;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+    :hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
+    }
+};
+select, input{
+    background-color: #ffffff;
+    color: #ADADAD;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+}
 h1{
     width: 100%;
     text-align: start;
@@ -100,7 +183,7 @@ h1{
     font-weight: 700;
     font-size: 26px;
     line-height: 31px;
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 30px;
 }
 `;

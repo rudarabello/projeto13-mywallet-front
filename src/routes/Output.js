@@ -90,12 +90,12 @@ export default function Output() {
                                 </option>)
                         })}
                     </select >
-                    <select onClick={(e) => setSubCategory(e.target.value)}>
+                    {/* <select onClick={(e) => setSubCategory(e.target.value)}>
                         {subCategorysRender.map((e) => {
                             return (
                                 <option key={e.id} value={e.subCategoryOut}>{e.subCategoryOut}</option>)
                         })}
-                    </select>
+                    </select> */}
                     <button type="submit">Salvar Saída</button>
                 </form>
             </Content>
