@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function TransactionItem({date, description, value}) {
     return (
         <Line>
-            <Date>{date}</Date>
+            <Date>{date.slice(0,-5)}</Date>
             <Description>{description}</Description>
             <Value>R$ {value}</Value>
         </Line>
@@ -27,9 +27,7 @@ line-height: 19px;
 color: #C6C6C6;
 display: flex;
 justify-items: flex-start;
-justify-content: flex-start;
-align-items: flex-start;
-align-content: flex-start;
+
 `;
 const Description = styled.div`
 justify-content: flex-start;

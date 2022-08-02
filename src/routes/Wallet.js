@@ -134,7 +134,7 @@ const LogOut = styled.div`
     font-size: 15px;
 `;
 const Content = styled.div`
-width: 80%;
+width: 100%;
 max-width: 300px;
 display: flex;
 flex-direction: column;

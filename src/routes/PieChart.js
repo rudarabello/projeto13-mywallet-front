@@ -58,9 +58,9 @@ export default function PieChart() {
     let categorySum = 0;
     categoryName = operations[i].category;
     type = operations[i].type;
-    for (let x = 0; x < operations.length; x++) {
-      if (operations[x].category === categoryName && operations[x].type === type) {
-        categorySum += operations[x].value;
+    for (let j = 0; j < operations.length; j++) {
+      if (operations[j].category === categoryName && operations[j].type === type) {
+        categorySum += operations[j].value;
       }
     }
     const findCategoryInterIn = interIn.find(

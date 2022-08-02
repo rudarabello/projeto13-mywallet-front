@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect, useRef } from 'react';
+import { useContext, useState } from 'react';
 import styled from "styled-components";
 import Context from "../contexts/Context"
 import TransactionItem from "../components/TransactionItem";
@@ -12,43 +12,14 @@ import { IoMdArrowRoundBack } from 'react-icons/io';
 export default function Extract() {
     const { data } = useContext(Context);
     const [operations, setOperations] = useState([]);
-    const [total, setTotal] = useState();
-    const [initil, setInitial] = useState("");
+    const [initial, setInitial] = useState("");
     const [final, setFinal] = useState("");
     const navigate = useNavigate();
-    const tempAxiosFunction = useRef();
-    const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
     const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/extract";
     const body = {
-        initial: initil,
+        initial: initial,
         final: final
     };
-    const axiosFunction = () => {
-        const config = { headers: { Authorization: `Bearer ${data.token}` } };
-        const promise = axios.get(ApiGet, config);
-        promise.then(response => setOperations(response.data));
-        promise.catch(() => {
-            alert("Por favor faça o login!");
-            navigate("/");
-        }
-        )
-    }
-    tempAxiosFunction.current = axiosFunction;
-    useEffect(() => {
-        tempAxiosFunction.current();
-    }, []);
-    useEffect(() => {
-        if (operations) {
-            const values = operations.map(({ value }) => { return value });
-            let balance = 0;
-            for (let j = 0; j < values.length; j++) {
-                balance += values[j]
-            }
-            balance = balance.toFixed(2);
-            balance = balance.toString().replace(".", ",");
-            setTotal(balance);
-        }
-    }, [operations]);
     function handleSubmit(e) {
         e.preventDefault();
         const config = {
@@ -58,10 +29,7 @@ export default function Extract() {
         };
         const promise = axios.post(APIPost, body, config
         );
-        promise.then(() => {
-            alert("Registrado com sucesso!");
-            navigate("/category");
-        });
+        promise.then(response => setOperations(response.data));
         promise.catch((err) => {
             alert(err);
             navigate("/");
@@ -76,7 +44,7 @@ export default function Extract() {
                 <h1>Seus Extratos</h1>
                 <TransationArea>
                     <Description>
-                        {operations.length === 0 ? <Message>Não há registros ainda</Message>
+                        {operations.length === 0 ? <Message>Por favor, selecione o intervalo</Message>
                             : operations.map((e, index) => {
                                 let valueTransaction = e.value;
                                 valueTransaction = valueTransaction.toFixed(2);
@@ -134,7 +102,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 100vh;
-min-height: 850px;
+
+min-height: 870px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -143,7 +112,7 @@ align-items: center;
 
 
 const Content = styled.div`
-width: 70%;
+width: 100%;
 max-width: 300px;
 display: flex;
 flex-direction: column;

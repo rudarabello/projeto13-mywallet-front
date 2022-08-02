@@ -13,7 +13,7 @@ export default function Output() {
     const [description, setDescription] = useState("");
     const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
     const [category, setCategory] = useState([]);
-    const [subCategory, setSubCategory] = useState([]);
+    const [subCategory, setSubCategory] = useState("");
     const [categorysFromApi, setCategorysFromApi] = useState([]);
     const tempAxiosFunction = useRef();
     const ApiGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
