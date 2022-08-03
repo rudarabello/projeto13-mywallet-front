@@ -15,7 +15,7 @@ const Banner = () => {
                     <img alt="deitado com celular na mao"src="https://nubank.com.br/images-cms/1650480415-man-sitting-with-phone-xs-3x.jpg"></img>
                 </div>
                 <div>
-                    <img alt="segurando o celular" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6Gi5n78Qy2RjBwBV1G5tiiOromPp34deQeishyIqsp49s8l8oyZYMW3AW5lpDoHGQPHI&usqp=CAU"></img>
+                    <img alt="segurando o celular" src="https://iili.io/S4BkFf.png"></img>
                 </div>
             </Carousel>
         </Box>
