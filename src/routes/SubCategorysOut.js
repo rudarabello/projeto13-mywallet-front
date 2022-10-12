@@ -72,7 +72,7 @@ const SubCategorysOut = () => {
         console.log(subCategorysFromAPI)
         console.log(subCategorysFromAPI)
         console.log(subCategorysFromAPI)
-    }, [subCategoryOut, categoryOutToAPI]);
+    }, [subCategoryOut, categoryOutToAPI, subCategorysFromAPI]);
     return (
         <Page>
             <BackArrow onClick={() => navigate('/category/output')}>

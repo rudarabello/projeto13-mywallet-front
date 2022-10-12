@@ -11,6 +11,7 @@ export default function PieChart() {
   const { data } = useContext(Context);
   const [operations, setOperations] = useState([]);
   const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const config = { headers: { Authorization: `Bearer ${data.token}` } };
   const interOut = [];
   const interIn = [];
@@ -44,7 +45,7 @@ export default function PieChart() {
         alert('Por favor faça o login!');
         navigate('/');
       });
-  }, []);
+  }, [ApiGet, config, navigate]);
   function randonColor(op = 1) {
     let r = Math.random() * (255 - 50) + 50;
     let g = Math.random() * (255 - 150) + 150;

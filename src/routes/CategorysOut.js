@@ -47,10 +47,10 @@ const CategorysOut = () => {
     }, [categorys]);
     return (
         <Page>
+            <Content>
             <BackArrow onClick={() => navigate('/category')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
-            <Content>
                 <h1>Suas categorias</h1>
                 <TransitionArea>
                     <Description>
@@ -163,10 +163,11 @@ h1{
     font-size: 26px;
     line-height: 31px;
     margin-bottom: 15px;
+    margin-top: 30px;
 };
 `;
 const BackArrow = styled.div`
     position: relative;
-    top: 20px;
-    left: -35%;
+    top: 10px;
+    left: -45%;
 `;

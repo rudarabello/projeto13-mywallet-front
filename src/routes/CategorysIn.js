@@ -163,10 +163,11 @@ h1{
     font-size: 26px;
     line-height: 31px;
     margin-bottom: 15px;
+    margin-top: 30px;
 };
 `;
 const BackArrow = styled.div`
-    position: fixed;
-    top: 20px;
-    left: 38px;
+    position: relative;
+    top: 10px;
+    left: -45%;
 `;

@@ -51,10 +51,10 @@ export default function Input() {
     }
     return (
         <Page>
+            <Content>
             <BackArrow onClick={() => navigate('/wallet')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
-            <Content>
                 <h1>Nova entrada</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="number" step=".01" required placeholder="Valor" onChange={
@@ -129,11 +129,12 @@ h1{
     font-weight: 700;
     font-size: 26px;
     line-height: 31px;
-    margin-bottom: 50px;
-};
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
 `;
 const BackArrow = styled.div`
-    position: fixed;
+    position: relative;
     top: 20px;
-    left: 38px;
+    left: -45%;
 `;

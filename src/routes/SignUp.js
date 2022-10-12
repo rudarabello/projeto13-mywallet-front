@@ -36,7 +36,7 @@ export default function SignUp() {
                 <input type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
                 <input type="password" placeholder="Confirme a senha" onChange={(e) => setCPassword(e.target.value)} />
-                <button type="submit">ENTRAR</button>
+                <button type="submit">CADASTRAR</button>
             </form>
             <Link to="/login">
                 <Linkto> Já tem uma conta? Faça login!</Linkto>

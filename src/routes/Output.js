@@ -1,10 +1,9 @@
+import axios from "axios";
+import { useContext, useEffect, useRef, useState } from "react";
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Context from "../contexts/Context";
-import axios from "axios";
-import { useState } from "react";
-import { IoMdArrowRoundBack } from 'react-icons/io';
 
 export default function Output() {
     const navigate = useNavigate();
@@ -13,13 +12,13 @@ export default function Output() {
     const [description, setDescription] = useState("");
     const APIPost = "https://back-project-mywallet-ruda.herokuapp.com/wallet";
     const [category, setCategory] = useState([]);
-    const [subCategory, setSubCategory] = useState("");
+    const [subCategory] = useState("");
     const [categorysFromApi, setCategorysFromApi] = useState([]);
     const tempAxiosFunction = useRef();
     const ApiGet1 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out";
     const APIGet2 = "https://back-project-mywallet-ruda.herokuapp.com/chart-out-sub";
     const [subCategorysFromAPI, setSubCategorysFromAPI] = useState([]);
-    const [subCategorysRender, setSubCategorysRender] = useState([]);
+    const [setSubCategorysRender] = useState([]);
     const axiosFunction = () => {
         const config = { headers: { Authorization: `Bearer ${data.token}` } };
         const promise = axios.get(ApiGet1, config);
@@ -58,7 +57,8 @@ export default function Output() {
         const promise = axios.get(APIGet2, config);
         promise.then(response => Goto(response.data));
         promise.catch((err) => { alert(err); navigate("/wallet"); });
-    }, [category]);
+    }, [Goto, category, data.token, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     function Goto(data) {
         setSubCategorysFromAPI(data);
         for (let index = 0; index < subCategorysFromAPI.length; index++) {
@@ -74,10 +74,10 @@ export default function Output() {
     }
     return (
         <Page>
+            <Content>
             <BackArrow onClick={() => navigate('/wallet')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
-            <Content>
                 <h1>Nova Saída</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="number" step=".01" required placeholder="Valor" onChange={(e) => setValue(e.target.value)} />
@@ -158,13 +158,12 @@ h1{
     font-weight: 700;
     font-size: 26px;
     line-height: 31px;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 `;
 const BackArrow = styled.div`
-    position: fixed;
+    position: relative;
     top: 20px;
-    left: 38px;
+    left: -45%;
 `;
-
-

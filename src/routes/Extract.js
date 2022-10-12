@@ -187,32 +187,6 @@ const Message = styled.div`
   margin-left: 70px;
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  margin-top: 30px;
-  width: 100%;
-  flex-direction: column;
-  button{
-    width: 100%;
-    height: 114px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    border-radius: 5px;
-    background-color: #A328D6;
-    border: thin solid #A328D6;
-    color: #ffffff;
-    font-family: 'Raleway';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 20px;
-    :hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(999, 999, 999, 0.9);
-    }
-}
-`;
-
 const BackArrow = styled.div`
     position: relative;
     top: 20px;

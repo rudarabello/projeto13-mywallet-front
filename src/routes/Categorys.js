@@ -7,10 +7,10 @@ const Categorys = () => {
     const navigate = useNavigate();
     return (
         <Page>
+            <Content>
             <BackArrow onClick={() => navigate('/wallet')}>
                 <IoMdArrowRoundBack color={'#ffffff'} fontSize="2.5em" />
             </BackArrow>
-            <Content>
             <button onClick={() => navigate('/category/input')}>Categorias de Entrada</button>
             <button onClick={() => navigate('/category/output')}>Categorias de Saída</button>
             </Content>
@@ -78,8 +78,7 @@ h1{
 };
 `;
 const BackArrow = styled.div`
-    position: fixed;
-    top: 20px;
-    left: 38px;
+    position: relative;
+    top: 10px;
+    left: -45%;
 `;
-
