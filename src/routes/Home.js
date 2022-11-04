@@ -7,6 +7,7 @@ import Header from '../components/Header';
 const Home = () => {
     return (
         <Container>
+             <Page> 
             <Header />
             <TextA>
                 <h1>Seja bem-vindo!</h1>
@@ -19,6 +20,7 @@ const Home = () => {
                 <p>e retirar extratos por periodos!</p>
             </TextB>
             <Footer />
+            </Page> 
         </Container>
     )
 }
@@ -26,11 +28,28 @@ const Home = () => {
 export default Home
 
 const Container = styled.div`
+width: 100%;
+background-color: #8C11BE;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 50px;
+
+`;
+
+const Page = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+max-width: 240px;
+form{
     width: 100%;
-    background-color: #8C11BE;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 25px;
+}
 `;
 
 const TextA = styled.div`
