@@ -53,7 +53,7 @@ Initial     | Login  | Home     | Charts
 4. Run the project on dev mode and have fun!
 
     ```bash
-    npm run dev
+    npm run start
     ```
 ## Made by:
 
