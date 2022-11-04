@@ -42,14 +42,6 @@ const Page = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-max-width: 240px;
-form{
-    width: 100%;
-display: flex;
-flex-direction: column;
-gap: 6px;
-margin-bottom: 25px;
-}
 `;
 
 const TextA = styled.div`
