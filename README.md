@@ -1,14 +1,15 @@
 # My Wallet
 
 ## Description
+
 My wallet is a app helps you manages your finance incomes and outcomes. You can take extracts, grafics of your categorized incomes and outcomes. 
 
 
 ## Screens - on mobile
 
-Home                       | 
-:-------------------------:|
-<img src="/public/screenShots/initial_screen.png" alt="initial_screen"  height="300">    
+Initial     | Login  | Home     | Charts  
+:----------:|:------:|:--------:|:-------:|
+<img src="/public/screenShots/initial_page.png" alt="initial"  height="300"> | <img src="/public/screenShots/login_page.png" alt="login"  height="300"> |  <img src="/public/screenShots/home_page.png" alt="home"  height="300"> | <img src="/public/screenShots/charts_page.png" alt="charts"  height="300"> 
 
 ## Features
 
@@ -54,3 +55,9 @@ Home                       |
     ```bash
     npm run dev
     ```
+## Made by:
+
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/ruda-rabello-da-silva/"><img src="https://avatars.githubusercontent.com/u/95311365?s=96&v=4" width="80px;" alt="Rudá Rabello"/><br /><sub><b>Rudá Rabello</b></sub></a><br /><a href="https://www.linkedin.com/in/ruda-rabello-da-silva/"title="Code">💻</a></td></td>
+</table>
