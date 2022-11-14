@@ -52,7 +52,6 @@ export default function PieChart() {
     let b = Math.random() * (255 - 120) + 120;
     return `rgba(${r}, ${g}, ${b}, ${op})`;
   }
-  console.log(operations);
   for (let i = 0; i < operations.length; i++) {
     let categoryName;
     let type;
@@ -90,8 +89,6 @@ export default function PieChart() {
       ]);
     }
   }
-  console.log(interIn);
-  console.log(interOut);
   interIn.forEach((item) => {
     dataInput.labels.push(item[0].label);
     dataInput.datasets[0].data.push(item[0].value);
