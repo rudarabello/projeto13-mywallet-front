@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Categorys from "./components/Categorys";
 import Fav from "./components/Favicon";
 import Hel from "./components/Helmet";
 import Context from "./contexts/Context";
-import Categorys from "./routes/Categorys";
 import CategorysIn from "./routes/CategorysIn";
 import CategorysOut from "./routes/CategorysOut";
 import Extract from "./routes/Extract";
