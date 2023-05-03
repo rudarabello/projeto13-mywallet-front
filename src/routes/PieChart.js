@@ -1,16 +1,16 @@
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useContext, useState, useEffect } from 'react';
-import styled from 'styled-components';
-import Context from '../contexts/Context';
-import ChartTest from '../components/PieChartCategories.tsx';
-import { IoMdArrowRoundBack } from 'react-icons/io';
-import { setup } from '../components/ConstantsToChart';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { setup } from "../components/ConstantsToChart";
+import ChartTest from "../components/PieChartCategories.tsx";
+import Context from "../contexts/Context";
 export default function PieChart() {
   const navigate = useNavigate();
   const { data } = useContext(Context);
   const [operations, setOperations] = useState([]);
-  const ApiGet = `https://back-project-mywallet-ruda.herokuapp.com/wallet`;
+  const ApiGet = `https://back-my-wallet-render.onrender.com/wallet`;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const config = { headers: { Authorization: `Bearer ${data.token}` } };
   const interOut = [];
@@ -42,8 +42,8 @@ export default function PieChart() {
     promise
       .then((response) => setOperations(response.data))
       .catch(() => {
-        alert('Por favor faça o login!');
-        navigate('/');
+        alert("Por favor faça o login!");
+        navigate("/");
       });
   }, [ApiGet, config, navigate]);
   function randonColor(op = 1) {
@@ -59,7 +59,10 @@ export default function PieChart() {
     categoryName = operations[i].category;
     type = operations[i].type;
     for (let j = 0; j < operations.length; j++) {
-      if (operations[j].category === categoryName && operations[j].type === type) {
+      if (
+        operations[j].category === categoryName &&
+        operations[j].type === type
+      ) {
         categorySum += operations[j].value;
       }
     }
@@ -69,11 +72,11 @@ export default function PieChart() {
     const findCategoryInterOut = interOut.find(
       (category) => category[0].label === categoryName
     );
-    if (operations[i].type === 'input') {
+    if (operations[i].type === "input") {
       if (findCategoryInterIn) continue;
       interIn.push([
         {
-          type: 'input',
+          type: "input",
           label: categoryName,
           value: categorySum,
         },
@@ -82,7 +85,7 @@ export default function PieChart() {
       if (findCategoryInterOut) continue;
       interOut.push([
         {
-          type: 'output',
+          type: "output",
           label: categoryName,
           value: categorySum,
         },
@@ -93,19 +96,19 @@ export default function PieChart() {
     dataInput.labels.push(item[0].label);
     dataInput.datasets[0].data.push(item[0].value);
     dataInput.datasets[0].backgroundColor.push(randonColor());
-    dataInput.datasets[0].borderColor.push('#8C11BE');
+    dataInput.datasets[0].borderColor.push("#8C11BE");
   });
   interOut.forEach((item) => {
     dataOutput.labels.push(item[0].label);
     dataOutput.datasets[0].data.push(item[0].value);
     dataOutput.datasets[0].backgroundColor.push(randonColor());
-    dataOutput.datasets[0].borderColor.push('#8C11BE');
+    dataOutput.datasets[0].borderColor.push("#8C11BE");
   });
   return (
     <Page>
       <Content>
-        <BackArrow onClick={() => navigate('/wallet')}>
-          <IoMdArrowRoundBack color={'#ffffff'} fontSize='2.5em' />
+        <BackArrow onClick={() => navigate("/wallet")}>
+          <IoMdArrowRoundBack color={"#ffffff"} fontSize="2.5em" />
         </BackArrow>
         <h1>Seus gráficos</h1>
         <ChartContent>
@@ -119,42 +122,40 @@ export default function PieChart() {
   );
 }
 const ChartContent = styled.div`
-    padding-top: 20px;
-    padding-bottom: 20px;
-    
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 const Page = styled.div`
-    background: #8c11be;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    min-height: 850px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+  background: #8c11be;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-height: 850px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const Content = styled.div`
-    width: 80%;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    h1{
+  width: 80%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
     width: 100%;
     text-align: start;
     color: white;
-    font-family: 'Raleway';
+    font-family: "Raleway";
     font-style: normal;
     font-weight: 700;
     font-size: 26px;
     line-height: 31px;
     margin-top: 60px;
-}
+  }
 `;
 const BackArrow = styled.div`
-    position: relative;
-    top: 20px;
-    left: -45%;
+  position: relative;
+  top: 20px;
+  left: -45%;
 `;
